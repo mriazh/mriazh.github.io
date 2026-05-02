@@ -30,22 +30,64 @@ document.querySelectorAll('.fade-in').forEach((element) => {
     observer.observe(element);
 });
 
-// Initialize Vanta.js 3D Network Background
-if (window.VANTA) {
-    VANTA.NET({
-        el: "#particles-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x00e5ff,
-        backgroundColor: 0x0a0a0f,
-        points: 12.00,
-        maxDistance: 22.00,
-        spacing: 18.00
+// Initialize tsParticles for Network Background with Mouse Attraction
+if (window.tsParticles) {
+    tsParticles.load("particles-bg", {
+        fpsLimit: 60,
+        particles: {
+            number: {
+                value: 60,
+                density: { enable: true, value_area: 800 }
+            },
+            color: { value: "#00e5ff" },
+            links: {
+                enable: true,
+                color: "#0077ff",
+                distance: 150,
+                opacity: 0.5,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 1.5,
+                direction: "none",
+                random: false,
+                straight: false,
+                outModes: { default: "bounce" }
+            },
+            size: {
+                value: 3,
+                random: true
+            },
+            opacity: {
+                value: 0.7
+            }
+        },
+        interactivity: {
+            detectsOn: "window",
+            events: {
+                onHover: {
+                    enable: true,
+                    mode: ["grab", "attract"] // Draws lines to mouse and pulls them in!
+                },
+                resize: true
+            },
+            modes: {
+                grab: {
+                    distance: 250,
+                    links: { opacity: 0.8 }
+                },
+                attract: {
+                    distance: 250,
+                    duration: 0.4,
+                    factor: 3 // Controls how strongly they are pulled to the cursor
+                }
+            }
+        },
+        detectRetina: true,
+        background: {
+            color: "#0a0a0f"
+        }
     });
 }
 
