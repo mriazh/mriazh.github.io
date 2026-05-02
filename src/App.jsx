@@ -39,20 +39,14 @@ function App() {
     window.addEventListener('scroll', handleScroll);
 
     // Fade-in Animation Observer
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach((el) => observer.observe(el));
@@ -65,50 +59,46 @@ function App() {
     };
   }, []);
 
+  // Subtle, muted particles — not the neon AI party
   const particlesConfig = {
     fpsLimit: 60,
     particles: {
       number: {
-        value: 60,
-        density: { enable: true, value_area: 800 }
+        value: 30,
+        density: { enable: true, value_area: 1000 }
       },
-      color: { value: "#00e5ff" },
+      color: { value: "#475569" },
       links: {
         enable: true,
-        color: "#0077ff",
-        distance: 150,
-        opacity: 0.5,
+        color: "#334155",
+        distance: 180,
+        opacity: 0.4,
         width: 1
       },
       move: {
         enable: true,
-        speed: 1.5,
+        speed: 0.6,
         direction: "none",
-        random: false,
+        random: true,
         straight: false,
-        outModes: { default: "bounce" }
+        outModes: { default: "out" }
       },
-      size: { value: 3, random: true },
-      opacity: { value: 0.7 }
+      size: { value: 2, random: true },
+      opacity: { value: 0.3 }
     },
     interactivity: {
       detectsOn: "window",
       events: {
         onHover: {
           enable: true,
-          mode: ["grab", "attract"]
+          mode: "grab"
         },
         resize: true
       },
       modes: {
         grab: {
-          distance: 250,
-          links: { opacity: 0.8 }
-        },
-        attract: {
-          distance: 250,
-          duration: 0.4,
-          factor: 3
+          distance: 150,
+          links: { opacity: 0.3 }
         }
       }
     },
@@ -155,11 +145,9 @@ function App() {
             <div className="avatar-container">
               <div className="avatar-wrapper">
                 <img src="/assets/avatar.jpg" alt="M Riyadh Azhar" className="avatar" />
-                <div className="avatar-overlay"></div>
               </div>
-              <div className="glow"></div>
             </div>
-            <h1 className="glitch" data-text="Hey, I'm Arap! 👋">Hey, I'm Arap! 👋</h1>
+            <h1 className="glitch">Hey, I'm Arap.</h1>
             <h2 className="subtitle">Network Support @ GMF AeroAsia</h2>
             <p className="tagline"><span ref={typedEl}></span></p>
             <div className="cta-buttons">
@@ -171,19 +159,19 @@ function App() {
 
         {/* About Section */}
         <section id="about" className="about section fade-in">
-          <h2 className="section-title">🧑‍💻 About Me</h2>
+          <h2 className="section-title">About Me</h2>
           <div className="about-grid">
-            <div className="about-card glass">
+            <div className="about-card card">
               <div className="icon">🔧</div>
               <h3>Network Infrastructure</h3>
               <p>Managing network monitoring, topology updates, switch patching, VLAN configuration, and server rack maintenance in an enterprise airport environment.</p>
             </div>
-            <div className="about-card glass">
+            <div className="about-card card">
               <div className="icon">🌐</div>
               <h3>Wireless &amp; LAN</h3>
               <p>Experienced in deploying and configuring new Wi-Fi and LAN devices, as well as troubleshooting complex network connections across the facility.</p>
             </div>
-            <div className="about-card glass">
+            <div className="about-card card">
               <div className="icon">🤖</div>
               <h3>Python Automation</h3>
               <p>Building specialized automation tools with Python to speed up MRTG monitoring, data extraction via OCR, and automated reporting workflows.</p>
@@ -193,9 +181,9 @@ function App() {
 
         {/* Skills Section */}
         <section id="skills" className="skills section fade-in">
-          <h2 className="section-title">🛠️ Tech Stack</h2>
+          <h2 className="section-title">Tech Stack</h2>
           <div className="skills-container">
-            <div className="skill-category glass">
+            <div className="skill-category card">
               <h3>Programming &amp; Web</h3>
               <div className="skill-tags">
                 <span className="tag">Python</span>
@@ -207,7 +195,7 @@ function App() {
                 <span className="tag">Bash</span>
               </div>
             </div>
-            <div className="skill-category glass">
+            <div className="skill-category card">
               <h3>Networking</h3>
               <div className="skill-tags">
                 <span className="tag">Cisco</span>
@@ -216,7 +204,7 @@ function App() {
                 <span className="tag">Network Automation</span>
               </div>
             </div>
-            <div className="skill-category glass">
+            <div className="skill-category card">
               <h3>Tools &amp; Databases</h3>
               <div className="skill-tags">
                 <span className="tag">Selenium</span>
@@ -231,30 +219,30 @@ function App() {
 
         {/* Projects Section */}
         <section id="projects" className="projects section fade-in">
-          <h2 className="section-title">🚀 Featured Projects</h2>
+          <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
-            <a href="https://github.com/mriazh/Automated-Daily-MRTG-Telkom-in-GMF" target="_blank" rel="noreferrer" className="project-card glass">
-              <h3>📊 Automated Daily MRTG</h3>
+            <a href="https://github.com/mriazh/Automated-Daily-MRTG-Telkom-in-GMF" target="_blank" rel="noreferrer" className="project-card card">
+              <h3>Automated Daily MRTG</h3>
               <p>Automated daily MRTG graph screenshot capture from TelkomCare with OCR validation and auto-retry mechanism.</p>
-              <span className="tech-used">Python, Selenium, OCR</span>
+              <span className="tech-used">Python · Selenium · OCR</span>
             </a>
-            <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report" target="_blank" rel="noreferrer" className="project-card glass">
-              <h3>📊 MRTG to Excel Report</h3>
+            <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report" target="_blank" rel="noreferrer" className="project-card card">
+              <h3>MRTG to Excel Report</h3>
               <p>Extracts bandwidth data from MRTG images via OCR and populates monthly Excel report templates automatically.</p>
-              <span className="tech-used">Python, Excel Automation</span>
+              <span className="tech-used">Python · Excel Automation</span>
             </a>
-            <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report-just_img" target="_blank" rel="noreferrer" className="project-card glass">
-              <h3>🖼️ MRTG to Excel (Image)</h3>
+            <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report-just_img" target="_blank" rel="noreferrer" className="project-card card">
+              <h3>MRTG to Excel (Image)</h3>
               <p>Precisely resizes and inserts MRTG graph images directly into Excel report templates — fast and lightweight.</p>
-              <span className="tech-used">Python, OpenPyXL</span>
+              <span className="tech-used">Python · OpenPyXL</span>
             </a>
           </div>
         </section>
 
         {/* Contact Section */}
         <section id="contact" className="contact section fade-in">
-          <h2 className="section-title">📬 Get In Touch</h2>
-          <div className="contact-card glass">
+          <h2 className="section-title">Get In Touch</h2>
+          <div className="contact-card card">
             <p>I'm always open to discussing networking, automation, or new opportunities.</p>
             <div className="social-links">
               <a href="https://github.com/mriazh" target="_blank" rel="noreferrer" className="social-btn" aria-label="GitHub">
@@ -275,7 +263,7 @@ function App() {
       </main>
 
       <footer>
-        <p>© 2026 M Riyadh Azhar. Built with ❤️ and React.js / Vite.</p>
+        <p>© 2026 M Riyadh Azhar. Built with React.js and Vite.</p>
       </footer>
     </>
   );
