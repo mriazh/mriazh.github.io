@@ -30,14 +30,37 @@ document.querySelectorAll('.fade-in').forEach((element) => {
     observer.observe(element);
 });
 
-// Optional: Dynamic background effect based on mouse movement
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    
-    const bg = document.getElementById('particles-bg');
-    bg.style.background = `
-        radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(0, 229, 255, 0.15) 0%, transparent 30%),
-        radial-gradient(circle at ${(1-x) * 100}% ${(1-y) * 100}%, rgba(0, 119, 255, 0.1) 0%, transparent 25%)
-    `;
-});
+// Initialize Vanta.js 3D Network Background
+if (window.VANTA) {
+    VANTA.NET({
+        el: "#particles-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x00e5ff,
+        backgroundColor: 0x0a0a0f,
+        points: 12.00,
+        maxDistance: 22.00,
+        spacing: 18.00
+    });
+}
+
+// Initialize Typed.js for the tagline
+if (window.Typed) {
+    new Typed('#typed-tagline', {
+        strings: [
+            'Automating the boring stuff.',
+            'Focusing on what matters.',
+            'Managing airport network infrastructure.',
+            'Python & Network Enthusiast.'
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 1500,
+        loop: true
+    });
+}
