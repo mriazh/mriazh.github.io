@@ -1,16 +1,26 @@
-# React + Vite
+# 🚀 M Riyadh Azhar (Arap) - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my personal portfolio repository! You can view the live site here: **[mriazh.github.io](https://mriazh.github.io/)**
 
-Currently, two official plugins are available:
+## 🧑‍💻 About Me
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I am a **Network Support** professional at GMF AeroAsia, specializing in enterprise airport network infrastructure (LAN, Wi-Fi, VLAN). I am also highly passionate about **Python Automation**, building specialized tools to speed up MRTG monitoring, OCR data extraction, and automated reporting workflows.
 
-## React Compiler
+*"Automating the boring stuff, focusing on what matters."*
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features of this Portfolio
+- **Built with React & Vite:** Modern, fast, and scalable component-based architecture.
+- **Modern Dark Theme:** Sleek dark UI with glowing neon blue accents.
+- **Glassmorphism UI:** Elegant transparent cards with blur effects.
+- **Interactive 3D Network Background:** Powered by `tsParticles`, the background features a dynamic network topology that interacts magnetically with mouse movements (Grab & Attract mode).
+- **Typing Animation:** Dynamic hero section powered by `Typed.js`.
+- **Automated Deployment:** GitHub Actions automatically builds and deploys to GitHub Pages on every push.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack Used
+- React.js / Vite
+- [tsParticles](https://particles.js.org/) (Interactive 3D Network Physics)
+- [Typed.js](https://github.com/mattboldt/typed.js/) (Typing Animations)
+- Google Fonts (Inter)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📄 License
+This project is open-source and available under the **[MIT License](LICENSE)**.
