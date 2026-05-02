@@ -1,164 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>M Riyadh Azhar | Network Support & Automation</title>
     <meta name="description" content="Personal portfolio of M Riyadh Azhar (Arap) - Network Support and Python Automation Enthusiast.">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="particles-bg"></div>
-    
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">&lt;mriazh/&gt;</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="hero fade-in">
-            <div class="hero-content">
-                <div class="avatar-container">
-                    <div class="avatar-wrapper">
-                        <img src="assets/avatar.jpg" alt="M Riyadh Azhar" class="avatar">
-                        <div class="avatar-overlay"></div>
-                    </div>
-                    <div class="glow"></div>
-                </div>
-                <h1 class="glitch" data-text="Hey, I'm Arap! 👋">Hey, I'm Arap! 👋</h1>
-                <h2 class="subtitle">Network Support @ GMF AeroAsia</h2>
-                <p class="tagline"><span id="typed-tagline"></span></p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-outline">Contact Me</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about section fade-in">
-            <h2 class="section-title">🧑‍💻 About Me</h2>
-            <div class="about-grid">
-                <div class="about-card glass">
-                    <div class="icon">🔧</div>
-                    <h3>Network Infrastructure</h3>
-                    <p>Managing network monitoring, topology updates, switch patching, VLAN configuration, and server rack maintenance in an enterprise airport environment.</p>
-                </div>
-                <div class="about-card glass">
-                    <div class="icon">🌐</div>
-                    <h3>Wireless & LAN</h3>
-                    <p>Experienced in deploying and configuring new Wi-Fi and LAN devices, as well as troubleshooting complex network connections across the facility.</p>
-                </div>
-                <div class="about-card glass">
-                    <div class="icon">🤖</div>
-                    <h3>Python Automation</h3>
-                    <p>Building specialized automation tools with Python to speed up MRTG monitoring, data extraction via OCR, and automated reporting workflows.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills section fade-in">
-            <h2 class="section-title">🛠️ Tech Stack</h2>
-            <div class="skills-container">
-                <div class="skill-category glass">
-                    <h3>Programming & Web</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">PHP</span>
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">Bash</span>
-                    </div>
-                </div>
-                <div class="skill-category glass">
-                    <h3>Networking</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Cisco</span>
-                        <span class="tag">MikroTik</span>
-                        <span class="tag">Huawei</span>
-                        <span class="tag">Network Automation</span>
-                    </div>
-                </div>
-                <div class="skill-category glass">
-                    <h3>Tools & Databases</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Selenium</span>
-                        <span class="tag">Tkinter</span>
-                        <span class="tag">SQLite</span>
-                        <span class="tag">MySQL</span>
-                        <span class="tag">Excel Automation</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects section fade-in">
-            <h2 class="section-title">🚀 Featured Projects</h2>
-            <div class="projects-grid">
-                <a href="https://github.com/mriazh/Automated-Daily-MRTG-Telkom-in-GMF" target="_blank" class="project-card glass">
-                    <h3>📊 Automated Daily MRTG</h3>
-                    <p>Automated daily MRTG graph screenshot capture from TelkomCare with OCR validation and auto-retry mechanism.</p>
-                    <span class="tech-used">Python, Selenium, OCR</span>
-                </a>
-                <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report" target="_blank" class="project-card glass">
-                    <h3>📊 MRTG to Excel Report</h3>
-                    <p>Extracts bandwidth data from MRTG images via OCR and populates monthly Excel report templates automatically.</p>
-                    <span class="tech-used">Python, Excel Automation</span>
-                </a>
-                <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report-just_img" target="_blank" class="project-card glass">
-                    <h3>🖼️ MRTG to Excel (Image)</h3>
-                    <p>Precisely resizes and inserts MRTG graph images directly into Excel report templates — fast and lightweight.</p>
-                    <span class="tech-used">Python, OpenPyXL</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section fade-in">
-            <h2 class="section-title">📬 Get In Touch</h2>
-            <div class="contact-card glass">
-                <p>I'm always open to discussing networking, automation, or new opportunities.</p>
-                <div class="social-links">
-                    <a href="https://github.com/mriazh" target="_blank" class="social-btn" aria-label="GitHub">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/mriazh" target="_blank" class="social-btn" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        LinkedIn
-                    </a>
-                    <a href="mailto:mriyadhazhar@gmail.com" class="social-btn" aria-label="Email">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
-                        Email
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2026 M Riyadh Azhar. Built with ❤️ and React.js / Vite.</p>
-    </footer>
-
-    <!-- JS Libraries for Effects -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.0.6/tsparticles.slim.bundle.min.js"></script>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
