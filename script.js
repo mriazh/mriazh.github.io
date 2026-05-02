@@ -98,11 +98,12 @@ if (window.Typed) {
             'Automating the boring stuff.',
             'Focusing on what matters.',
             'Managing airport network infrastructure.',
-            'Python & Network Enthusiast.'
+            'Python and Network Enthusiast.'
         ],
         typeSpeed: 50,
         backSpeed: 30,
         backDelay: 1500,
-        loop: true
+        loop: true,
+        smartBackspace: false
     });
 }
