@@ -6,7 +6,6 @@ import './index.css';
 
 function App() {
   const [init, setInit] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const typedEl = useRef(null);
 
   useEffect(() => {
@@ -32,9 +31,15 @@ function App() {
       smartBackspace: false
     });
 
-    // Navbar Scroll Effect
+    // Navbar Scroll Effect (vanilla JS to avoid re-render)
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const nav = document.querySelector('.navbar');
+      if (!nav) return;
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -130,7 +135,7 @@ function App() {
         />
       )}
 
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <nav className="navbar">
         <div className="nav-content">
           <div className="logo">&lt;mriazh/&gt;</div>
           <ul className="nav-links">

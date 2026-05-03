@@ -69,14 +69,14 @@ a {
     top: 0;
     width: 100%;
     z-index: 100;
-    padding: 1.25rem 0;
-    transition: var(--transition);
+    padding: 1rem 0;
+    background: var(--bg-dark);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
 }
 
 .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom-color: var(--border-color);
 }
 
 .nav-content {
