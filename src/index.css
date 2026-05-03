@@ -372,18 +372,20 @@ a {
 }
 
 .social-links {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    flex-wrap: wrap;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .social-btn {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     background: var(--bg-surface);
-    padding: 0.7rem 1.25rem;
+    padding: 0.7rem 1rem;
     border-radius: 4px;
     border: 1px solid var(--border-color);
 }

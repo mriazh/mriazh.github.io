@@ -193,7 +193,7 @@ function App() {
           <h2 className="section-title">Tech Stack</h2>
           <div className="skills-container">
             <div className="skill-category card">
-              <h3>Programming &amp; Web</h3>
+              <h3>Programming</h3>
               <div className="skill-tags">
                 <span className="tag"><i className="devicon-python-plain"></i> Python</span>
                 <span className="tag"><i className="devicon-javascript-plain"></i> JavaScript</span>

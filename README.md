@@ -10,17 +10,18 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 
 ## ✨ Features of this Portfolio
 - **Built with React & Vite:** Modern, fast, and scalable component-based architecture.
-- **Modern Dark Theme:** Sleek dark UI with glowing neon blue accents.
-- **Glassmorphism UI:** Elegant transparent cards with blur effects.
-- **Interactive 3D Network Background:** Powered by `tsParticles`, the background features a dynamic network topology that interacts magnetically with mouse movements (Grab & Attract mode).
+- **Professional Dark Theme:** Sleek slate-navy UI with curated blue accents and serif headings.
+- **Interactive Network Background:** Powered by `tsParticles` with grab & attract mouse interaction.
 - **Typing Animation:** Dynamic hero section powered by `Typed.js`.
-- **Automated Deployment:** GitHub Actions automatically builds and deploys to GitHub Pages on every push.
+- **Tech Stack Icons:** Devicon & Simple Icons integration for visual tech badges.
+- **Automated Deployment:** GitHub Actions builds and deploys to GitHub Pages on every push.
 
 ## 🛠️ Tech Stack Used
 - React.js / Vite
-- [tsParticles](https://particles.js.org/) (Interactive 3D Network Physics)
+- [tsParticles](https://particles.js.org/) (Interactive Network Particles)
 - [Typed.js](https://github.com/mattboldt/typed.js/) (Typing Animations)
-- Google Fonts (Inter)
+- [Devicon](https://devicon.dev/) & [Simple Icons](https://simpleicons.org/) (Tech Icons)
+- Google Fonts (DM Sans, Instrument Serif)
 
 ## 📄 License
 This project is open-source and available under the **[MIT License](LICENSE)**.
