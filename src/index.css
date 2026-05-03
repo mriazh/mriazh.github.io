@@ -359,7 +359,7 @@ a {
 
 /* --- Contact Section --- */
 .contact-card {
-    max-width: 550px;
+    max-width: 450px;
     margin: 0 auto;
     text-align: center;
 }
@@ -373,10 +373,8 @@ a {
 
 .social-links {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
 }
 
 .social-btn {
