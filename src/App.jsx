@@ -236,14 +236,9 @@ function App() {
               <span className="tech-used">Python · Selenium · OCR</span>
             </a>
             <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report" target="_blank" rel="noreferrer" className="project-card card">
-              <h3>MRTG to Excel Report</h3>
-              <p>Extracts bandwidth data from MRTG images via OCR and populates monthly Excel report templates automatically.</p>
-              <span className="tech-used">Python · Excel Automation</span>
-            </a>
-            <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report-just_img" target="_blank" rel="noreferrer" className="project-card card">
-              <h3>MRTG to Excel (Image)</h3>
-              <p>Precisely resizes and inserts MRTG graph images directly into Excel report templates — fast and lightweight.</p>
-              <span className="tech-used">Python · OpenPyXL</span>
+              <h3>Automated MRTG to Excel Report</h3>
+              <p>All-in-one automation: Extracts bandwidth data via OCR and seamlessly inserts perfectly resized MRTG graph images into monthly Excel templates.</p>
+              <span className="tech-used">Python · OCR · Excel Automation</span>
             </a>
           </div>
         </section>
