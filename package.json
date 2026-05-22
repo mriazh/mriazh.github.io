@@ -1,7 +1,7 @@
 {
-  "name": "temp-app",
+  "name": "mriazh-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,12 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^3.9.1",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "tsparticles": "^3.9.1",
-    "typed.js": "^3.0.0"
+    "react-dom": "^19.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
