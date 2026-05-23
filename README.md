@@ -9,19 +9,56 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 *"Automating the boring stuff, focusing on what matters."*
 
 ## ✨ Features of this Portfolio
-- **Built with React & Vite:** Modern, fast, and scalable component-based architecture.
-- **Professional Dark Theme:** Sleek slate-navy UI with curated blue accents and serif headings.
-- **Interactive Network Background:** Powered by `tsParticles` with grab & attract mouse interaction.
-- **Typing Animation:** Dynamic hero section powered by `Typed.js`.
-- **Tech Stack Icons:** Devicon & Simple Icons integration for visual tech badges.
+
+- **Neobrutalism UI:** Bold borders, hard box-shadows, vibrant accent colors, and playful hover interactions with translate effects.
+- **Dark Theme with Dot Grid:** Deep navy background with subtle dot-grid pattern for texture.
+- **Marquee Banner:** Scrolling tech keywords banner for visual energy.
+- **Decorative Stickers:** Floating badge stickers around the avatar for personality.
+- **Responsive Design:** Mobile-first layout that adapts from single-column to full desktop.
+- **Zero External JS Libraries:** Pure React + CSS — no tsParticles, no Typed.js, no runtime dependencies.
 - **Automated Deployment:** GitHub Actions builds and deploys to GitHub Pages on every push.
 
-## 🛠️ Tech Stack Used
+## 🎨 Design System
+
+| Element | Style |
+|---------|-------|
+| Borders | 4px solid, hard edges (no border-radius) |
+| Shadows | `8px 8px 0px #000` offset shadows |
+| Hover | Cards/buttons translate `4px, 4px` on hover |
+| Colors | Green `#00FFA3`, Yellow `#FFE600`, Blue `#4D4DFF`, Pink `#FFA6F6` |
+| Typography | Space Grotesk (body), JetBrains Mono (logo) |
+| Background | Navy `#1a1a2e` with radial dot grid overlay |
+
+## 🛠️ Tech Stack
+
 - React.js / Vite
-- [tsParticles](https://particles.js.org/) (Interactive Network Particles)
-- [Typed.js](https://github.com/mattboldt/typed.js/) (Typing Animations)
-- [Devicon](https://devicon.dev/) & [Simple Icons](https://simpleicons.org/) (Tech Icons)
-- Google Fonts (DM Sans, Instrument Serif)
+- Pure CSS (Neobrutalism design system, no UI framework)
+- Google Fonts (Space Grotesk, JetBrains Mono)
+- GitHub Actions (CI/CD to GitHub Pages)
+
+## 📂 Project Structure
+
+```
+src/
+├── App.jsx          ← Main component (all sections)
+├── index.css        ← Neobrutalism styles + responsive
+├── main.jsx         ← React entry point
+└── assets/          ← Static assets
+public/
+├── assets/avatar.jpg
+├── favicon.png
+└── icons.svg
+```
+
+## 🚀 Development
+
+```bash
+npm install
+npm run dev       # Start dev server
+npm run build     # Production build
+npm run preview   # Preview production build
+```
 
 ## 📄 License
+
 This project is open-source and available under the **[MIT License](LICENSE)**.
