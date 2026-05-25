@@ -12,7 +12,7 @@ function App() {
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
-          <a href="#contact" className="neo-btn" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+          <a href="#contact" className="neo-btn neo-btn--nav">
             Hire Me
           </a>
         </div>
@@ -21,7 +21,7 @@ function App() {
       {/* Marquee Banner */}
       <div className="marquee-container">
         <div className="marquee-content">
-          <span>NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • INFRASTRUCTURE • CISCO • MIKROTIK • HUAWEI • NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • INFRASTRUCTURE • CISCO • MIKROTIK • HUAWEI • NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • INFRASTRUCTURE • CISCO • MIKROTIK • HUAWEI • NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • INFRASTRUCTURE • CISCO • MIKROTIK • HUAWEI •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • CISCO • MIKROTIK • HUAWEI • SSH • LLDP • FTTH • GPON • INFRASTRUCTURE • NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • CISCO • MIKROTIK • HUAWEI • SSH • LLDP • FTTH • GPON • INFRASTRUCTURE • NETWORK AUTOMATION • PYTHON • SELENIUM • MRTG MONITORING • CISCO • MIKROTIK • HUAWEI • SSH • LLDP • FTTH • GPON • INFRASTRUCTURE •&nbsp;</span>
         </div>
       </div>
 
@@ -29,7 +29,7 @@ function App() {
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-text">
-            <div className="hero-badge">⚡ Status: Open to opportunities</div>
+            <div className="hero-badge">⚡ Open to opportunities</div>
             <h1>
               Network<br />
               Support<br />
@@ -48,24 +48,25 @@ function App() {
           </div>
           <div className="hero-image">
             <div className="hero-image-wrapper">
-              <img src="/assets/avatar.jpg" alt="M Riyadh Azhar" loading="lazy" />
+              <img src="/assets/avatar.png" alt="M Riyadh Azhar" loading="lazy" />
             </div>
-            {/* Decorative stickers around avatar */}
-            <div className="deco-sticker deco-sticker--1">MTCNA ✓</div>
+            {/* Decorative stickers */}
+            <div className="deco-sticker deco-sticker--1">🎓 MTCNA</div>
             <div className="deco-sticker deco-sticker--2">🐍 Python</div>
             <div className="deco-sticker deco-sticker--3">📡 FTTH</div>
+            <div className="deco-sticker deco-sticker--4">🔧 Cisco</div>
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="section" style={{ background: 'var(--bg-surface)' }}>
+        {/* Skills Section — YELLOW BACKGROUND */}
+        <section id="skills" className="section section--yellow">
           <div className="section-inner">
             <h2 className="section-title">Tech Arsenal</h2>
-            <div className="skills-grid">
-              {/* Networking */}
-              <div className="neo-card skill-card">
+            <div className="skills-bento">
+              {/* Big card — Networking */}
+              <div className="neo-card skill-card skill-card--large">
                 <div className="skill-card-header">
-                  <h3>Networking</h3>
+                  <h3>🌐 Networking</h3>
                   <span className="skill-card-badge">Core</span>
                 </div>
                 <ul className="skill-list">
@@ -79,24 +80,25 @@ function App() {
               </div>
 
               {/* Automation */}
-              <div className="neo-card skill-card" style={{ background: 'var(--accent-pink)', color: '#000000' }}>
+              <div className="neo-card skill-card skill-card--accent">
                 <div className="skill-card-header">
-                  <h3 style={{ color: '#000000' }}>Automation</h3>
-                  <span className="skill-card-badge">Focus</span>
+                  <h3>🤖 Automation</h3>
+                  <span className="skill-card-badge skill-card-badge--dark">Focus</span>
                 </div>
                 <ul className="skill-list">
                   <li>Python (Selenium, PySide6)</li>
                   <li>PaddleOCR / Image Processing</li>
                   <li>Browser Automation</li>
                   <li>Excel Report Generation</li>
+                  <li>SSH Automation (Paramiko)</li>
                   <li>Git / GitHub</li>
                 </ul>
               </div>
 
-              {/* Tools */}
+              {/* Systems & Tools */}
               <div className="neo-card skill-card">
                 <div className="skill-card-header">
-                  <h3>Systems & Tools</h3>
+                  <h3>🛠️ Systems & Tools</h3>
                   <span className="skill-card-badge">Support</span>
                 </div>
                 <ul className="skill-list">
@@ -112,14 +114,39 @@ function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="section">
+        <section id="projects" className="section section--dark">
           <div className="section-inner">
             <h2 className="section-title">Featured Projects</h2>
             <div className="projects-list">
 
-              {/* Project 1 */}
+              {/* Project 1 — WAC Huawei (newest, most impressive) */}
               <div className="project-card">
-                <div className="project-metric" style={{ background: 'var(--accent-green)' }}>
+                <div className="project-metric project-metric--green">
+                  <div className="number">451</div>
+                  <div className="label">APs Crawled</div>
+                </div>
+                <div className="project-body">
+                  <h3>📡 WAC Huawei LLDP Crawler</h3>
+                  <div className="project-tags">
+                    <span>Python</span>
+                    <span>SSH</span>
+                    <span>Paramiko</span>
+                    <span>Huawei</span>
+                  </div>
+                  <div className="project-details">
+                    <p><strong>Problem:</strong> Manually checking LLDP neighbors on 451 Access Points via SSH is impossible to do by hand — would take days.</p>
+                    <p><strong>Solution:</strong> Automated SSH crawler that connects to Huawei WAC, stelnet into each AP, extracts LLDP data, maps neighbors to switch IPs, and outputs CSV.</p>
+                    <p><strong>Result:</strong> Full AP-to-Switch mapping in one run. Auto-reconnect, resume after interruption, and zero config changes (read-only).</p>
+                  </div>
+                  <a href="https://github.com/mriazh/Automated-WAC-Huawei-Crawl-Data" target="_blank" rel="noopener noreferrer" className="project-link">
+                    View Repository →
+                  </a>
+                </div>
+              </div>
+
+              {/* Project 2 — Daily MRTG */}
+              <div className="project-card">
+                <div className="project-metric project-metric--yellow">
                   <div className="number">95%</div>
                   <div className="label">Time Saved</div>
                 </div>
@@ -132,7 +159,7 @@ function App() {
                   </div>
                   <div className="project-details">
                     <p><strong>Problem:</strong> Manually screenshotting 16+ MRTG graphs daily across date ranges took 2+ hours and was error-prone.</p>
-                    <p><strong>Solution:</strong> Built a bot with auto-retry, image quality validation (YCbCr analysis), and Nuclear Isolation Protocol for pixel-perfect captures.</p>
+                    <p><strong>Solution:</strong> Bot with auto-retry, image quality validation (YCbCr analysis), and Nuclear Isolation Protocol for pixel-perfect captures.</p>
                     <p><strong>Result:</strong> Entire batch completes unattended in ~15 minutes with 0% missed graphs.</p>
                   </div>
                   <a href="https://github.com/mriazh/Automated-Daily-MRTG-Telkom-in-GMF" target="_blank" rel="noopener noreferrer" className="project-link">
@@ -141,9 +168,9 @@ function App() {
                 </div>
               </div>
 
-              {/* Project 2 */}
+              {/* Project 3 — Live Monitor */}
               <div className="project-card">
-                <div className="project-metric" style={{ background: 'var(--accent-yellow)' }}>
+                <div className="project-metric project-metric--blue">
                   <div className="number">24/7</div>
                   <div className="label">Live Monitoring</div>
                 </div>
@@ -166,9 +193,9 @@ function App() {
                 </div>
               </div>
 
-              {/* Project 3 */}
+              {/* Project 4 — Excel Report */}
               <div className="project-card">
-                <div className="project-metric" style={{ background: 'var(--accent-pink)' }}>
+                <div className="project-metric project-metric--pink">
                   <div className="number">10x</div>
                   <div className="label">Faster Reporting</div>
                 </div>
@@ -193,19 +220,21 @@ function App() {
             </div>
           </div>
         </section>
-
       </main>
 
       {/* Footer / Contact */}
       <footer id="contact" className="footer">
-        <h2 className="footer-title">Let's Optimize<br />Your Network.</h2>
-        <div className="footer-links">
-          <a href="mailto:mriyadhazhar@gmail.com" className="footer-link">Email</a>
-          <a href="https://www.linkedin.com/in/mriazh" target="_blank" rel="noopener noreferrer" className="footer-link">LinkedIn</a>
-          <a href="https://github.com/mriazh" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a>
-          <a href="https://www.instagram.com/rapzzzzy" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
+        <div className="footer-inner">
+          <h2 className="footer-title">Let's Optimize<br />Your Network.</h2>
+          <p className="footer-subtitle">Always open to discussing networking, automation, or new opportunities.</p>
+          <div className="footer-links">
+            <a href="mailto:mriyadhazhar@gmail.com" className="footer-link">✉️ Email</a>
+            <a href="https://www.linkedin.com/in/mriazh" target="_blank" rel="noopener noreferrer" className="footer-link">💼 LinkedIn</a>
+            <a href="https://github.com/mriazh" target="_blank" rel="noopener noreferrer" className="footer-link">🐙 GitHub</a>
+            <a href="https://www.instagram.com/rapzzzzy" target="_blank" rel="noopener noreferrer" className="footer-link">📷 Instagram</a>
+          </div>
+          <p className="footer-copy">© 2026 M Riyadh Azhar. Built with React + Vite.</p>
         </div>
-        <p className="footer-copy">© 2026 M Riyadh Azhar. All Rights Reserved.</p>
       </footer>
     </>
   );
