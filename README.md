@@ -22,10 +22,11 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 
 | Element | Style |
 |---------|-------|
-| Borders | 4px solid, hard edges (no border-radius) |
-| Shadows | `8px 8px 0px #000` offset shadows |
-| Hover | Cards/buttons translate `4px, 4px` on hover |
-| Colors | Green `#00FFA3`, Yellow `#FFE600`, Blue `#4D4DFF`, Pink `#FFA6F6` |
+| Borders | 3px solid |
+| Border Radius | 14px |
+| Shadows | `6px 6px 0px #000` offset shadows |
+| Hover | Cards/buttons translate `3px, 3px` on hover |
+| Colors | Green `#00FFA3`, Yellow `#FFE600`, Blue `#4D4DFF`, Pink `#FFA6F6`, Orange `#FF6B35` |
 | Typography | Space Grotesk (body), JetBrains Mono (logo) |
 | Background | Navy `#1a1a2e` with radial dot grid overlay |
 
@@ -45,7 +46,7 @@ src/
 ├── main.jsx         ← React entry point
 └── assets/          ← Static assets
 public/
-├── assets/avatar.jpg
+├── assets/avatar.png
 ├── favicon.png
 └── icons.svg
 ```

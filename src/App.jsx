@@ -48,7 +48,7 @@ function App() {
           </div>
           <div className="hero-image">
             <div className="hero-image-wrapper">
-              <img src="/assets/avatar.png" alt="M Riyadh Azhar" loading="lazy" />
+              <img src="/assets/avatar.png" alt="M Riyadh Azhar" fetchPriority="high" width="300" height="300" />
             </div>
             {/* Decorative stickers */}
             <div className="deco-sticker deco-sticker--1">🎓 MTCNA</div>
