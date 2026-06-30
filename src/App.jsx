@@ -150,25 +150,27 @@ function App() {
                 </div>
               </div>
 
-              {/* Project 2 — Daily MRTG */}
+              {/* Project 2 — MRTG TelkomCare Report Automation */}
               <div className="project-card">
                 <div className="project-metric project-metric--yellow">
-                  <div className="number">95%</div>
-                  <div className="label">Time Saved</div>
+                  <div className="number">E2E</div>
+                  <div className="label">Full Pipeline</div>
                 </div>
                 <div className="project-body">
-                  <h3>🤖 Automated Daily MRTG Screenshot</h3>
+                  <h3>📊 MRTG TelkomCare Report Automation</h3>
                   <div className="project-tags">
                     <span>Python</span>
                     <span>Selenium</span>
                     <span>PySide6</span>
+                    <span>PaddleOCR</span>
+                    <span>openpyxl</span>
                   </div>
                   <div className="project-details">
-                    <p><strong>Problem:</strong> Manually screenshotting 16+ MRTG graphs daily across date ranges took 2+ hours and was error-prone.</p>
-                    <p><strong>Solution:</strong> Bot with auto-retry, image quality validation (YCbCr analysis), and Nuclear Isolation Protocol for pixel-perfect captures.</p>
-                    <p><strong>Result:</strong> Entire batch completes unattended in ~15 minutes with 0% missed graphs.</p>
+                    <p><strong>Problem:</strong> Scraping 16+ MRTG graphs daily, reading bandwidth values from 480+ images, and compiling Excel reports was a multi-hour, error-prone manual process.</p>
+                    <p><strong>Solution:</strong> Unified end-to-end pipeline with GUI & CLI — auto-scrapes graphs from TelkomCare (with retry & image validation), then uses AI-powered OCR to extract data and generate formatted Excel reports.</p>
+                    <p><strong>Result:</strong> Entire workflow from scraping to final report runs unattended. Supports resume-on-failure, Windows installer, and portable distribution.</p>
                   </div>
-                  <a href="https://github.com/mriazh/Automated-Daily-MRTG-Telkom-in-GMF" target="_blank" rel="noopener noreferrer" className="project-link">
+                  <a href="https://github.com/mriazh/MRTG-TelkomCare-Report-Automation" target="_blank" rel="noopener noreferrer" className="project-link">
                     View Repository →
                   </a>
                 </div>
@@ -199,29 +201,6 @@ function App() {
                 </div>
               </div>
 
-              {/* Project 4 — Excel Report */}
-              <div className="project-card">
-                <div className="project-metric project-metric--pink">
-                  <div className="number">10x</div>
-                  <div className="label">Faster Reporting</div>
-                </div>
-                <div className="project-body">
-                  <h3>📊 MRTG to Excel Report Generator</h3>
-                  <div className="project-tags">
-                    <span>Python</span>
-                    <span>PaddleOCR</span>
-                    <span>openpyxl</span>
-                  </div>
-                  <div className="project-details">
-                    <p><strong>Problem:</strong> Monthly bandwidth reports required manually reading values from 480+ graph images and typing them into Excel.</p>
-                    <p><strong>Solution:</strong> OCR engine that extracts Current/Avg/Max values from MRTG images and auto-populates Excel templates with data + resized images.</p>
-                    <p><strong>Result:</strong> Full monthly report generated in minutes instead of days, with smart N/A detection for audit review.</p>
-                  </div>
-                  <a href="https://github.com/mriazh/Automated-MRTG-to-Excel-Report" target="_blank" rel="noopener noreferrer" className="project-link">
-                    View Repository →
-                  </a>
-                </div>
-              </div>
 
             </div>
           </div>
