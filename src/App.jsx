@@ -1,10 +1,138 @@
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./index.css";
 
+function useScrollReveal(options = {}) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15, ...options }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, isVisible];
+}
+
+function CountUp({ target, suffix = "", duration = 2000 }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const numTarget = parseInt(target);
+    if (isNaN(numTarget)) {
+      setCount(target);
+      return;
+    }
+    const startTime = performance.now();
+    function animate(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * numTarget));
+      if (progress < 1) requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }, [started, target, duration]);
+
+  return <div className="number" ref={ref}>{count}{suffix}</div>;
+}
+
+function TypeWriter({ text, speed = 30, delay = 600 }) {
+  const [displayed, setDisplayed] = useState('');
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (displayed.length < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayed(text.slice(0, displayed.length + 1));
+      }, speed);
+      return () => clearTimeout(timer);
+    }
+  }, [started, displayed, text, speed]);
+
+  return (
+    <span>
+      {displayed}
+      {displayed.length < text.length && <span className="typewriter-cursor">|</span>}
+    </span>
+  );
+}
+
 function App() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleMouse = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    if (window.matchMedia('(hover: hover)').matches) {
+      window.addEventListener('mousemove', handleMouse, { passive: true });
+    }
+    return () => window.removeEventListener('mousemove', handleMouse);
+  }, []);
+
+  const [skillRef1, skillVis1] = useScrollReveal();
+  const [skillRef2, skillVis2] = useScrollReveal();
+  const [skillRef3, skillVis3] = useScrollReveal();
+  const [projRef1, projVis1] = useScrollReveal();
+  const [projRef2, projVis2] = useScrollReveal();
+  const [projRef3, projVis3] = useScrollReveal();
+  const [titleSkillsRef, titleSkillsVis] = useScrollReveal();
+  const [titleProjRef, titleProjVis] = useScrollReveal();
+  const [footerRef, footerVis] = useScrollReveal();
+
   return (
     <>
+      <div
+        className="cursor-glow"
+        style={{ left: mousePos.x, top: mousePos.y }}
+        aria-hidden="true"
+      />
+
       {/* Navigation */}
-      <nav className="navbar">
+      <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
         <div className="nav-content">
           <div className="nav-logo">mriazh</div>
           <ul className="nav-links">
@@ -36,8 +164,11 @@ function App() {
               <span className="highlight">Engineer.</span>
             </h1>
             <p className="hero-description">
-              M Riyadh Azhar — turning slow manual network tasks
-              into precise, reliable automation scripts.
+              <TypeWriter
+                text="M Riyadh Azhar — turning slow manual network tasks into precise, reliable automation scripts."
+                speed={28}
+                delay={700}
+              />
             </p>
             <div className="hero-buttons">
               <a href="#projects" className="neo-btn">View Projects</a>
@@ -64,13 +195,19 @@ function App() {
           </div>
         </section>
 
+        <div className="section-divider">
+          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,60 L0,60 Z" fill="var(--accent-yellow)" />
+          </svg>
+        </div>
+
         {/* Skills Section — YELLOW BACKGROUND */}
         <section id="skills" className="section section--yellow">
           <div className="section-inner">
-            <h2 className="section-title">Tech Arsenal</h2>
+            <h2 ref={titleSkillsRef} className={`section-title ${titleSkillsVis ? 'reveal' : ''}`}>Tech Arsenal</h2>
             <div className="skills-bento">
               {/* Big card — Networking */}
-              <div className="neo-card skill-card skill-card--large">
+              <div ref={skillRef1} className={`neo-card skill-card skill-card--large ${skillVis1 ? 'reveal' : ''}`} style={{ transitionDelay: '0ms' }}>
                 <div className="skill-card-header">
                   <h3>🌐 Networking</h3>
                   <span className="skill-card-badge">Core</span>
@@ -86,7 +223,7 @@ function App() {
               </div>
 
               {/* Automation */}
-              <div className="neo-card skill-card skill-card--accent">
+              <div ref={skillRef2} className={`neo-card skill-card skill-card--accent ${skillVis2 ? 'reveal' : ''}`} style={{ transitionDelay: '150ms' }}>
                 <div className="skill-card-header">
                   <h3>🤖 Automation</h3>
                   <span className="skill-card-badge skill-card-badge--dark">Focus</span>
@@ -102,7 +239,7 @@ function App() {
               </div>
 
               {/* Systems & Tools */}
-              <div className="neo-card skill-card">
+              <div ref={skillRef3} className={`neo-card skill-card ${skillVis3 ? 'reveal' : ''}`} style={{ transitionDelay: '300ms' }}>
                 <div className="skill-card-header">
                   <h3>🛠️ Systems & Tools</h3>
                   <span className="skill-card-badge">Support</span>
@@ -119,16 +256,22 @@ function App() {
           </div>
         </section>
 
+        <div className="section-divider section-divider--flip">
+          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,60 Z" fill="var(--accent-yellow)" />
+          </svg>
+        </div>
+
         {/* Projects Section */}
         <section id="projects" className="section section--dark">
           <div className="section-inner">
-            <h2 className="section-title">Featured Projects</h2>
+            <h2 ref={titleProjRef} className={`section-title ${titleProjVis ? 'reveal' : ''}`}>Featured Projects</h2>
             <div className="projects-list">
 
-              {/* Project 1 — WAC Huawei (newest, most impressive) */}
-              <div className="project-card">
+              {/* Project 1 — WAC Huawei */}
+              <div ref={projRef1} className={`project-card ${projVis1 ? 'reveal' : ''}`} style={{ transitionDelay: '0ms' }}>
                 <div className="project-metric project-metric--green">
-                  <div className="number">451</div>
+                  <CountUp target={451} />
                   <div className="label">APs Crawled</div>
                 </div>
                 <div className="project-body">
@@ -151,9 +294,9 @@ function App() {
               </div>
 
               {/* Project 2 — MRTG TelkomCare Report Automation */}
-              <div className="project-card">
+              <div ref={projRef2} className={`project-card ${projVis2 ? 'reveal' : ''}`} style={{ transitionDelay: '200ms' }}>
                 <div className="project-metric project-metric--yellow">
-                  <div className="number">E2E</div>
+                  <CountUp target="E2E" />
                   <div className="label">Full Pipeline</div>
                 </div>
                 <div className="project-body">
@@ -177,9 +320,9 @@ function App() {
               </div>
 
               {/* Project 3 — Live Monitor */}
-              <div className="project-card">
+              <div ref={projRef3} className={`project-card ${projVis3 ? 'reveal' : ''}`} style={{ transitionDelay: '400ms' }}>
                 <div className="project-metric project-metric--blue">
-                  <div className="number">24/7</div>
+                  <CountUp target="24/7" />
                   <div className="label">Live Monitoring</div>
                 </div>
                 <div className="project-body">
@@ -209,7 +352,7 @@ function App() {
 
       {/* Footer / Contact */}
       <footer id="contact" className="footer">
-        <div className="footer-inner">
+        <div ref={footerRef} className={`footer-inner ${footerVis ? 'reveal' : ''}`}>
           <h2 className="footer-title">Let's Optimize<br />Your Network.</h2>
           <p className="footer-subtitle">Always open to discussing networking, automation, or new opportunities.</p>
           <div className="footer-links">
