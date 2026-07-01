@@ -173,7 +173,7 @@ export default function App() {
 
       <nav className={`navbar ${navScrolled ? 'navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="nav-content">
-          <span className="nav-logo">MRA<span className="nav-logo-dot">.</span></span>
+          <span className="nav-logo">MRIAZH<span className="nav-logo-dot">.</span></span>
           <ul className="nav-links">
             <li><a href="#skills">Arsenal</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -256,7 +256,6 @@ export default function App() {
                   <li><Server className="list-icon" aria-hidden="true" /> Cisco, MikroTik, Huawei</li>
                   <li><Wifi className="list-icon" aria-hidden="true" /> FTTH / GPON</li>
                   <li><Smartphone className="list-icon" aria-hidden="true" /> Wireless & Mesh Networks</li>
-                  <li><TerminalIcon className="list-icon" aria-hidden="true" /> MikroTik RouterOS</li>
                 </ul>
               </div>
 
@@ -288,7 +287,7 @@ export default function App() {
                 </div>
                 <ul className="skill-list">
                   <li><Laptop className="list-icon" aria-hidden="true" /> Windows & macOS (Troubleshooting)</li>
-                  <li><Server className="list-icon" aria-hidden="true" /> Linux (Ubuntu, CLI)</li>
+                  <li><Server className="list-icon" aria-hidden="true" /> Linux (Debian, CLI)</li>
                   <li><Code2 className="list-icon" aria-hidden="true" /> React.js / Node.js</li>
                   <li><Zap className="list-icon" aria-hidden="true" /> OPM & OTDR (Fiber)</li>
                   <li><Rocket className="list-icon" aria-hidden="true" /> PyInstaller (.exe builds)</li>

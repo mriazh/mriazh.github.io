@@ -107,7 +107,7 @@ a { text-decoration: none; color: inherit; }
 
 .marquee-content {
   display: inline-block;
-  animation: marquee 30s linear infinite;
+  animation: marquee 15s linear infinite;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -562,6 +562,19 @@ a { text-decoration: none; color: inherit; }
 .skill-card:hover .skill-list li::before {
   transform: scale(1.4) rotate(45deg);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- 3rd Skill Card (Systems & Tools) Dark Fix --- */
+.skill-card:nth-child(3) {
+  color: #ffffff;
+}
+.skill-card:nth-child(3) h3,
+.skill-card:nth-child(3) li {
+  color: #ffffff;
+}
+.skill-card:nth-child(3) .list-icon,
+.skill-card:nth-child(3) .skill-icon {
+  color: #ffffff;
 }
 
 /* --- Projects --- */
