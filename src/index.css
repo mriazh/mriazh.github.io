@@ -700,7 +700,57 @@ a { text-decoration: none; color: inherit; }
   box-shadow: 0 4px 12px rgba(255, 230, 0, 0.3);
 }
 
-/* --- Typewriter Cursor --- */
+/* --- Lucide Icon Alignment --- */
+.badge-icon,
+.sticker-icon,
+.skill-icon,
+.project-icon,
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.badge-icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.sticker-icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 0.4rem;
+}
+
+.skill-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.project-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.6rem;
+}
+
+.footer-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+}
+
+/* Ensure skill-card-header and project-body h3 use flex for icon alignment */
+.skill-card-header,
+.project-body h3 {
+  display: flex;
+  align-items: center;
+}
+
+/* Typewriter Cursor --- */
 @keyframes cursorBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
