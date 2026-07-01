@@ -47,8 +47,7 @@ src/
 └── assets/          ← Static assets
 public/
 ├── assets/avatar.png
-├── favicon.png
-└── icons.svg
+└── favicon.png
 ```
 
 ## 🚀 Development

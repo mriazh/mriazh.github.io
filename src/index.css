@@ -103,11 +103,13 @@ a { text-decoration: none; color: inherit; }
   color: var(--accent-green);
   padding: 0.6rem 0;
   border-bottom: var(--border-width) solid var(--border);
+  display: flex;
 }
 
 .marquee-content {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: marquee 10s linear infinite;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -116,7 +118,7 @@ a { text-decoration: none; color: inherit; }
 
 @keyframes marquee {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
+  100% { transform: translateX(-50%); }
 }
 
 /* --- Navbar --- */

@@ -3,7 +3,6 @@ import {
   GraduationCap,
   Terminal,
   Wifi,
-  Settings,
   Globe,
   Bot,
   Wrench,
@@ -11,7 +10,6 @@ import {
   RadioTower,
   BarChart3,
   MonitorPlay,
-  AppWindow,
   Monitor,
   Mail,
   Briefcase,
@@ -25,7 +23,6 @@ import {
   Laptop,
   Smartphone,
   Router,
-  Terminal as TerminalIcon,
   FileCode,
   Rocket,
 } from 'lucide-react';
@@ -167,7 +164,16 @@ export default function App() {
 
       <header className="marquee-container" role="banner">
         <div className="marquee-content" aria-hidden="true">
-          NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH • REACT • VITE • LUCIDE
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
+          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
         </div>
       </header>
 
