@@ -1,126 +1,39 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { 
-  GraduationCap,
-  Terminal,
-  Wifi,
+import { useState, useEffect, useRef } from 'react';
+import {
   Globe,
-  Bot,
-  Wrench,
   Network,
-  RadioTower,
   BarChart3,
   MonitorPlay,
-  Monitor,
   Mail,
   Briefcase,
   GitBranch,
   Camera,
   Code2,
-  Cpu,
   Server,
   Zap,
-  Shield,
   Laptop,
   Smartphone,
   Router,
   FileCode,
+  Terminal,
+  Wifi,
+  Bot,
+  Monitor,
   Rocket,
+  Shield,
+  Cpu,
 } from 'lucide-react';
 import './index.css';
+import { useScrollReveal } from './hooks/useScrollReveal';
+import { useMobileMenu } from './hooks/useMobileMenu';
+import Navbar from './components/Navbar';
+import MobileMenu from './components/MobileMenu';
+import Hero from './components/Hero';
+import CountUp from './components/CountUp';
+import { useReducedMotion } from './hooks/useReducedMotion';
 
-// --- Custom Hook: useScrollReveal ---
-function useScrollReveal(options = {}) {
-  const { threshold = 0.15, rootMargin = '0px 0px -50px 0px', once = true } = options;
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          if (once) observer.unobserve(el);
-        } else if (!once) {
-          setIsVisible(false);
-        }
-      },
-      { threshold, rootMargin }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold, rootMargin, once]);
-
-  return [ref, isVisible];
-}
-
-// --- CountUp Component ---
-function CountUp({ target, suffix = '', duration = 2000, delay = 0 }) {
-  const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
-  const ref = useRef(null);
-
-  const startAnimation = useCallback(() => {
-    if (hasStarted) return;
-    const isNumeric = !isNaN(Number(target));
-    if (!isNumeric) {
-      setCount(target);
-      setHasStarted(true);
-      return;
-    }
-    const targetNum = Number(target);
-    const startTime = performance.now() + delay;
-    function animate(now) {
-      if (now < startTime) {
-        requestAnimationFrame(animate);
-        return;
-      }
-      const elapsed = Math.min(now - startTime, duration);
-      const progress = elapsed / duration;
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(targetNum * eased));
-      if (elapsed < duration) requestAnimationFrame(animate);
-      else { setCount(targetNum); setHasStarted(true); }
-    }
-    requestAnimationFrame(animate);
-  }, [target, duration, delay, hasStarted]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) startAnimation(); },
-      { threshold: 0.5, rootMargin: '0px 0px -100px 0px' }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [startAnimation]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
-// --- TypeWriter Component ---
-function TypeWriter({ text, speed = 35, delay = 0 }) {
-  const [displayed, setDisplayed] = useState('');
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (index < text.length) {
-      const timer = setTimeout(() => {
-        setDisplayed(text.slice(0, index + 1));
-        setIndex(index + 1);
-      }, index === 0 ? delay : speed);
-      return () => clearTimeout(timer);
-    }
-  }, [index, text, speed, delay]);
-
-  return (
-    <span>
-      {displayed}
-      {index < text.length && <span className="typewriter-cursor" aria-hidden="true">|</span>}
-    </span>
-  );
-}
-
+// --- App Component ---
 export default function App() {
   // Scroll reveal refs
   const [skillRef1, skillVis1] = useScrollReveal();
@@ -141,9 +54,24 @@ export default function App() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
+  // Mobile menu
+  const { isOpen, toggle, close } = useMobileMenu();
+  const menuTriggerRef = useRef(null);
+  const wasOpen = useRef(false);
+
+  // Return focus on close
+  useEffect(() => {
+    if (isOpen) {
+      wasOpen.current = true;
+    } else if (wasOpen.current && menuTriggerRef.current) {
+      menuTriggerRef.current.focus();
+      wasOpen.current = false;
+    }
+  }, [isOpen]);
+
   // Cursor glow follower
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = useReducedMotion();
   useEffect(() => {
     if (prefersReducedMotion) return;
     const handler = (e) => setCursorPos({ x: e.clientX, y: e.clientY });
@@ -169,73 +97,14 @@ export default function App() {
           <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
           <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
           <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
         </div>
       </header>
 
-      <nav className={`navbar ${navScrolled ? 'navbar--scrolled' : ''}`} role="navigation" aria-label="Main navigation">
-        <div className="nav-content">
-          <span className="nav-logo">MRIAZH<span className="nav-logo-dot">.</span></span>
-          <ul className="nav-links">
-            <li><a href="#skills">Arsenal</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar navScrolled={navScrolled} toggleMobileMenu={toggle} isOpen={isOpen} menuTriggerRef={menuTriggerRef} />
+      <MobileMenu isOpen={isOpen} onClose={close} triggerRef={menuTriggerRef} />
 
-      <main>
-        {/* Hero Section */}
-        <section id="home" className="hero" aria-labelledby="hero-title">
-          <div className="hero-text">
-            <span className="hero-badge">
-              <Zap className="badge-icon" aria-hidden="true" /> Network Engineer & Automator
-            </span>
-            <h1 id="hero-title">
-              I Build <span className="highlight">Resilient Networks</span><br />
-              & <span className="highlight">Automation Pipelines</span>
-            </h1>
-            <p className="hero-description">
-              <TypeWriter
-                text="Transforming manual network ops into reliable, scalable code."
-                speed={35}
-                delay={500}
-              />
-            </p>
-            <div className="hero-buttons">
-              <a href="#projects" className="neo-btn">View Projects</a>
-              <a href="#contact" className="neo-btn neo-btn--outline">Get In Touch</a>
-            </div>
-          </div>
-          <div className="hero-image">
-            <div className="hero-image-wrapper">
-              <img
-                src="/assets/avatar.png"
-                alt="M Riyadh Azhar"
-                fetchPriority="high"
-                width="300"
-                height="300"
-              />
-            </div>
-            {/* Decorative stickers */}
-            <div className="deco-sticker deco-sticker--1">
-              <GraduationCap className="sticker-icon" aria-hidden="true" /> MTCNA
-            </div>
-            <div className="deco-sticker deco-sticker--2">
-              <Code2 className="sticker-icon" aria-hidden="true" /> Python
-            </div>
-            <div className="deco-sticker deco-sticker--3">
-              <RadioTower className="sticker-icon" aria-hidden="true" /> FTTH
-            </div>
-            <div className="deco-sticker deco-sticker--4">
-              <Wrench className="sticker-icon" aria-hidden="true" /> Cisco
-            </div>
-          </div>
-        </section>
+<main>
+        <Hero/>
 
         <div className="section-divider">
           <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -361,7 +230,7 @@ export default function App() {
                   </div>
                   <div className="project-details">
                     <p><strong>Problem:</strong> Scraping 16+ MRTG graphs daily, reading bandwidth values from 480+ images, and compiling Excel reports was a multi-hour, error-prone manual process.</p>
-                    <p><strong>Solution:</strong> Unified end-to-end pipeline with GUI & CLI — auto-scrapescapes graphs from TelkomCare (with retry & image validation), then uses AI-powered OCR to extract data and generate formatted Excel reports.</p>
+                    <p><strong>Solution:</strong> Unified end-to-end pipeline with GUI & CLI — automatically scrapes graphs from TelkomCare (with retry & image validation), then uses AI-powered OCR to extract data and generate formatted Excel reports.</p>
                     <p><strong>Result:</strong> Entire workflow from scraping to final report runs unattended. Supports resume-on-failure, Windows installer, and portable distribution.</p>
                   </div>
                   <a href="https://github.com/mriazh/MRTG-TelkomCare-Report-Automation" target="_blank" rel="noopener noreferrer" className="project-link">
