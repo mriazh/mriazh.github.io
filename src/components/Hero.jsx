@@ -6,7 +6,7 @@ export default function Hero() {
     <section id="home" className="hero" aria-labelledby="hero-title">
       <div className="hero-text">
         <span className="hero-badge">
-          <Zap className="badge-icon" aria-hidden="true" /> Network Engineer & Automator
+          <Zap className="badge-icon" aria-hidden="true" /> Network Automation Engineer
         </span>
         <h1 id="hero-title">
           I Build <span className="highlight">Resilient Networks</span><br />

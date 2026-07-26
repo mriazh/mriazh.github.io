@@ -4,7 +4,7 @@ Welcome to my personal portfolio repository! You can view the live site here: **
 
 ## 🧑‍💻 About Me
 
-I am a **Network Support** professional at GMF AeroAsia, specializing in enterprise airport network infrastructure (LAN, Wi-Fi, VLAN). I am also highly passionate about **Python Automation**, building specialized tools to speed up MRTG monitoring, OCR data extraction, and automated reporting workflows.
+I am a **Network Automation Engineer** at GMF AeroAsia, specializing in enterprise airport network infrastructure (LAN, Wi-Fi, VLAN). I build Python automation for SSH workflows, OCR pipelines, network monitoring, and operational reporting.
 
 *"Automating the boring stuff, focusing on what matters."*
 
@@ -15,7 +15,7 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 - **Marquee Banner:** Scrolling tech keywords banner for visual energy.
 - **Decorative Stickers:** Floating badge stickers around the avatar for personality.
 - **Responsive Design:** Mobile-first layout that adapts from single-column to full desktop.
-- **Zero External JS Libraries:** Pure React + CSS — no tsParticles, no Typed.js, no runtime dependencies.
+- **Focused Runtime Dependencies:** Built with React + Vite and plain CSS. The only runtime dependency beyond React is `lucide-react` for inline SVG icons — no animation or UI frameworks.
 - **Automated Deployment:** GitHub Actions builds and deploys to GitHub Pages on every push.
 
 ## 🎨 Design System
@@ -32,8 +32,9 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 
 ## 🛠️ Tech Stack
 
-- React.js / Vite
-- Pure CSS (Neobrutalism design system, no UI framework)
+- React + Vite
+- `lucide-react` (inline SVG icons)
+- Plain CSS (Neobrutalism design system, no UI framework)
 - Google Fonts (Space Grotesk, JetBrains Mono)
 - GitHub Actions (CI/CD to GitHub Pages)
 
@@ -41,12 +42,26 @@ I am a **Network Support** professional at GMF AeroAsia, specializing in enterpr
 
 ```
 src/
-├── App.jsx          ← Main component (all sections)
-├── index.css        ← Neobrutalism styles + responsive
-├── main.jsx         ← React entry point
-└── assets/          ← Static assets
+├── App.jsx                 ← Composition root (sections, scroll state, mobile menu)
+├── index.css               ← Neobrutalism styles + responsive
+├── main.jsx                ← React entry point
+├── components/
+│   ├── Navbar.jsx          ← Desktop navigation
+│   ├── MobileMenu.jsx      ← Accessible hamburger drawer
+│   ├── Hero.jsx            ← Hero with TypeWriter
+│   ├── CountUp.jsx         ← Count-up metric
+│   └── TypeWriter.jsx      ← Typewriter effect (reduced-motion aware)
+└── hooks/
+    ├── useMobileMenu.js     ← Drawer state + focus + scroll lock
+    ├── useScrollReveal.js   ← IntersectionObserver reveal
+    ├── useReducedMotion.js  ← prefers-reduced-motion media query
+    └── useCountUp.js        ← Count-up animation
 public/
 ├── assets/avatar.png
+├── assets/CV.pdf
+├── assets/og-preview.png
+├── robots.txt
+├── sitemap.xml
 └── favicon.png
 ```
 

@@ -9,17 +9,16 @@ export function useMobileMenu() {
 
   useEffect(() => {
     if (isOpen) {
-      // Store original
-      const originalStyle = window.getComputedStyle(document.body).overflow;
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      
+
       const handleEscape = (e) => {
         if (e.key === 'Escape') close();
       };
       document.addEventListener('keydown', handleEscape);
 
       return () => {
-        document.body.style.overflow = originalStyle;
+        document.body.style.overflow = originalOverflow;
         document.removeEventListener('keydown', handleEscape);
       };
     }
