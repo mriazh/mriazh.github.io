@@ -1,6 +1,6 @@
 # 🚀 M Riyadh Azhar (Arap) - Personal Portfolio
 
-Welcome to my personal portfolio repository! You can view the live site here: **[mriazh.github.io](https://mriazh.github.io/)**
+Welcome to my personal portfolio repository! You can view the live site here: **[mriazh.my.id](https://mriazh.my.id/)**
 
 ## 🧑‍💻 About Me
 

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://mriazh.github.io/sitemap.xml
+Sitemap: https://mriazh.my.id/sitemap.xml
