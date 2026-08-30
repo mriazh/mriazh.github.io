@@ -18,13 +18,17 @@ The portfolio still presents the July 2026 snapshot at `mriazh.github.io`, while
 3. Make `https://mriazh.my.id/` the canonical URL in `index.html`, JSON-LD, Open Graph/Twitter metadata, `robots.txt`, and `sitemap.xml`.
 4. Keep the GitHub Pages URL as a compatibility/redirect destination where GitHub Pages provides it; do not break existing links unnecessarily.
 5. Refresh featured-project content using evidence from the current repositories, prioritizing:
-   - MRTG-Poncab: RouterOS API polling, SQLite/WAL time-series storage, RRDtool-style graphs/autoscale, multi-timespan analysis, reporting exports, and operational alerting where publicly appropriate.
+   - MRTG-CMP: Renamed from MRTG-Poncab. RouterOS API polling, SQLite/WAL time-series storage, RRDtool-style graphs/autoscale, multi-timespan analysis, reporting exports, and sanitized generic branch router presentation.
    - Automated-WAC-Huawei-Crawl-Data: current reorganized structure, release/installer availability, read-only LLDP collection, resume/reconnect behavior, and AP-to-switch mapping.
    - GMF-CMP-Automation: current IMAP OTP, Firefox persistent profile, strict Daily Usage Query flow, workbook/day-tab update behavior, and bounded connectivity handling.
    - GMF-CMP-Monitor: current continuous CMP monitoring, dual VPN orchestration, IMAP OTP retrieval, session recovery, and NOC display use case.
    - MRTG TelkomCare Report Automation: incremental monthly reporting and OCR/LLM-assisted extraction, if the repository remains current and public.
-6. Do not publish credentials, internal hostnames, private operational details, or claims that are not supported by the repository's public documentation.
-7. Preserve responsive behavior, reduced-motion support, semantic accessibility, and the existing visual identity unless a content change requires a small layout adjustment.
+6. Enhance SEO metadata and semantic entity signals for `@mriazh`:
+   - Include `@mriazh` alias in `<title>` to bridge brand query matching with the personal handle.
+   - Add `alternateName: ["mriazh", "Arap"]` in JSON-LD Person schema.
+   - Maintain clean non-confidential wording throughout.
+7. Do not publish credentials, internal hostnames, private operational details, or claims that are not supported by the repository's public documentation.
+8. Preserve responsive behavior, reduced-motion support, semantic accessibility, and the existing visual identity unless a content change requires a small layout adjustment.
 
 ## Non-functional requirements
 

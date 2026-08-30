@@ -2,8 +2,8 @@ import { BarChart3, Wifi, Rocket } from 'lucide-react';
 
 export const projectsData = [
   {
-    id: 'mrtg-poncab',
-    title: 'MRTG-Poncab',
+    id: 'mrtg-cmp',
+    title: 'MRTG-CMP',
     icon: BarChart3,
     metric: {
       target: 'API',
@@ -15,10 +15,10 @@ export const projectsData = [
     tags: ['Python', 'RouterOS API', 'SQLite', 'FastAPI', 'Matplotlib'],
     details: {
       problem: 'Tracking WAN bandwidth across useful historical windows without relying on SNMP can require separate collection, storage, and reporting tools.',
-      solution: 'MRTG-Poncab polls RouterOS API counters, stores time-series traffic data in SQLite with WAL enabled, and serves an authenticated dashboard with flexible date ranges and autoscaled MRTG-style graphs.',
+      solution: 'MRTG-CMP polls RouterOS API counters, stores time-series traffic data in SQLite with WAL enabled, and serves an authenticated dashboard with flexible date ranges and autoscaled MRTG-style graphs.',
       result: 'Engineers can review current and historical traffic and export graphs or data as PNG, Excel, or CSV from one system.',
     },
-    repoUrl: 'https://github.com/mriazh/MRTG-Poncab',
+    repoUrl: 'https://github.com/mriazh/MRTG-CMP',
   },
   {
     id: 'automated-wac-huawei-crawl-data',

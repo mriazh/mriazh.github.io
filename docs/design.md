@@ -50,11 +50,18 @@ Retain the existing `projectsData` model so the current card component remains s
 
 Preferred content hierarchy:
 
-1. MRTG-Poncab — strongest current monitoring/system product story.
+1. MRTG-CMP — strongest current monitoring/system product story (renamed from MRTG-Poncab).
 2. Automated WAC Huawei Crawl Data — concrete scale and network automation story.
 3. GMF CMP Automation — applied browser/IMAP/Excel workflow.
 4. GMF CMP Monitor — continuous monitoring and resilient connectivity story, if a fourth card is supported cleanly.
 5. MRTG TelkomCare — retain as a supporting OCR/reporting case study if it remains current.
+
+## Search Engine & Entity Optimization (@mriazh)
+
+To train Google's entity disambiguation models away from the false "mirazh" typo correction and associate the exact handle `mriazh` with `Muhammad Riyadh Azhar`:
+- Page title updated to `M Riyadh Azhar (@mriazh) | Network Automation Engineer`.
+- JSON-LD Person schema updated with `alternateName: ["mriazh", "Arap"]`.
+- Retain existing canonical links and Open Graph tags.
 
 Use outcomes and capabilities, not confidential infrastructure specifics. Avoid presenting unfinished work as production-complete.
 

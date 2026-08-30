@@ -13,6 +13,9 @@
 - [x] T9. Configure Cloudflare DNS: four apex A records and optional `www` CNAME. **Target:** owner/operator action. **Depends on:** T8 (recommended ordering).
 - [x] T10. Recheck public DNS, HTTPS, robots, sitemap, and social assets after propagation/certificate issuance. **Target:** orchestrator verification. **Depends on:** T7, T8, T9.
 - [x] T11. Update `docs/CONTEXT.md` with final evidence, blockers, and handoff. **Target:** orchestrator. **Depends on:** T10.
+- [x] T12. Update `src/data/projects.js` to point MRTG-Poncab entry to MRTG-CMP and sanitize labels. **Target:** free-stack implementation worker. **Depends on:** T11.
+- [x] T13. Update `index.html` to add `@mriazh` to title and `alternateName: ["mriazh", "Arap"]` to JSON-LD. **Target:** free-stack implementation worker. **Depends on:** T11.
+- [x] T14. Verify build, lint, and diffs before final user review. **Target:** orchestrator verification. **Depends on:** T12, T13.
 
 ## Worker constraints
 
