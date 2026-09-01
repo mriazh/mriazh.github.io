@@ -14,7 +14,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="section section--yellow" aria-labelledby="skills-title">
+    <section id="skills" className="section" aria-labelledby="skills-title">
       <div className="section-inner">
         <h2 ref={titleSkillsRef} id="skills-title" className={`section-title ${titleSkillsVis ? 'reveal' : ''}`}>Tech Arsenal</h2>
         <div className="skills-bento">

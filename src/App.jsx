@@ -55,36 +55,12 @@ export default function App() {
         />
       )}
 
-      <header className="marquee-container" role="banner">
-        <div className="marquee-content" aria-hidden="true">
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-          <span>NETWORK AUTOMATION • PYTHON • CISCO • MIKROTIK • FTTH •&nbsp;</span>
-        </div>
-      </header>
-
       <Navbar navScrolled={navScrolled} toggleMobileMenu={toggle} isOpen={isOpen} menuTriggerRef={menuTriggerRef} />
       <MobileMenu isOpen={isOpen} onClose={close} triggerRef={menuTriggerRef} />
 
       <main>
         <Hero />
-
-        <div className="section-divider">
-          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L1440,60 L0,60 Z" fill="var(--accent-yellow)" />
-          </svg>
-        </div>
-
         <SkillsSection />
-
-        <div className="section-divider section-divider--flip">
-          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,0 L1440,0 L1440,60 Z" fill="var(--accent-yellow)" />
-          </svg>
-        </div>
-
         <ProjectsSection />
       </main>
 

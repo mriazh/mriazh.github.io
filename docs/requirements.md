@@ -1,50 +1,76 @@
-# Portfolio Domain & Content Refresh Requirements
+# Portfolio Redesign: Dark Precision Engineering & Curated Project Showcase
 
-## Problem statement
+## 1. Problem Statement
 
-The portfolio still presents the July 2026 snapshot at `mriazh.github.io`, while several related repositories received substantial updates through August and September 2026. The public portfolio should represent the current engineering body of work and use the owner's primary domain, `mriazh.my.id`, as the canonical address.
+The current portfolio design suffers from:
+1. **AI-Slop Neobrutalism**: Loud candy colors (yellow, pink, cyan, green), thick 3px black borders, harsh 6px black drop-shadows, diagonal yellow SVG dividers, wobbling cartoon stickers around the avatar, and a scrolling marquee ticker. This aesthetic undermines technical authority for an enterprise infrastructure and network automation engineer.
+2. **Outdated Project Selection**: Outdated and retired projects (such as `Automated WAC Huawei Crawl Data`) are featured, while the strongest, most complex engineering projects in the developer's portfolio (`Switch-Collector` with 255 passing tests, `MRTG-CMP` with RouterOS API & autoscale engine, and `MRTG-TelkomCare-Report-Automation` with PaddleOCR + Gemini Vision fallback) are omitted.
 
-## User stories
+## 2. Objective & User Stories
 
-- As a recruiter or technical collaborator, I can open `https://mriazh.my.id/` and see the current portfolio without needing to know the GitHub Pages URL.
-- As a visitor, I can understand the strongest current work across network monitoring, network automation, reporting, and applied AI without being shown stale project status.
-- As a search engine or social platform, I receive consistent canonical, Open Graph, JSON-LD, robots, and sitemap URLs for the primary domain.
-- As the maintainer, I can continue deploying the Vite site through the existing GitHub Actions Pages workflow.
+- **Target Persona**: Engineering Managers, Infrastructure Leads, and AI Automation Recruiters.
+- **Aesthetic Direction**: **Dark Precision Engineering** — clean, authoritative, dark-tech, telemetry-driven, minimal, high-craftsmanship (inspired by Tailscale, Linear, and Cloudflare Radar).
+- **Core Value Proposition**: An enterprise network automation engineer who builds production-grade telemetry systems, multi-vendor CLI engines, and Applied AI data pipelines.
 
-## Functional requirements
+## 3. Curated Project Showcase
 
-1. Keep GitHub Pages as the hosting platform and preserve the existing build/deploy workflow unless a worker identifies a concrete incompatibility.
-2. Configure `mriazh.my.id` as the repository's GitHub Pages custom domain through repository settings and DNS; do not assume a committed `CNAME` file is needed for the current custom Actions workflow.
-3. Make `https://mriazh.my.id/` the canonical URL in `index.html`, JSON-LD, Open Graph/Twitter metadata, `robots.txt`, and `sitemap.xml`.
-4. Keep the GitHub Pages URL as a compatibility/redirect destination where GitHub Pages provides it; do not break existing links unnecessarily.
-5. Refresh featured-project content using evidence from the current repositories, prioritizing:
-   - MRTG-CMP: Renamed from MRTG-Poncab. RouterOS API polling, SQLite/WAL time-series storage, RRDtool-style graphs/autoscale, multi-timespan analysis, reporting exports, and sanitized generic branch router presentation.
-   - Automated-WAC-Huawei-Crawl-Data: current reorganized structure, release/installer availability, read-only LLDP collection, resume/reconnect behavior, and AP-to-switch mapping.
-   - GMF-CMP-Automation: current IMAP OTP, Firefox persistent profile, strict Daily Usage Query flow, workbook/day-tab update behavior, and bounded connectivity handling.
-   - GMF-CMP-Monitor: current continuous CMP monitoring, dual VPN orchestration, IMAP OTP retrieval, session recovery, and NOC display use case.
-   - MRTG TelkomCare Report Automation: incremental monthly reporting and OCR/LLM-assisted extraction, if the repository remains current and public.
-6. Enhance SEO metadata and semantic entity signals for `@mriazh`:
-   - Include `@mriazh` alias in `<title>` to bridge brand query matching with the personal handle.
-   - Add `alternateName: ["mriazh", "Arap"]` in JSON-LD Person schema.
-   - Maintain clean non-confidential wording throughout.
-7. Do not publish credentials, internal hostnames, private operational details, or claims that are not supported by the repository's public documentation.
-8. Preserve responsive behavior, reduced-motion support, semantic accessibility, and the existing visual identity unless a content change requires a small layout adjustment.
+Replace the existing project list with the top 3 production-grade systems:
 
-## Non-functional requirements
+### Project 1: `Switch-Collector` (Enterprise Multi-OS Switch Auditor)
+- **ID**: `switch-collector`
+- **Title**: `Unified Switch Collector`
+- **Icon**: `Server` (or `ShieldCheck`)
+- **Metric**: `255` | `Tests Passed` (or `Multi-OS` | `Aruba & ProCurve`)
+- **Tags**: `['Python', 'Netmiko', 'Pytest (255 tests)', 'ArubaOS-CX', 'Jira CMDB', 'PyInstaller']`
+- **Problem**: Manually auditing serial numbers, hardware fan health, PoE budgets, and VSF stack chassis across enterprise switch fleets via CLI is time-consuming and risks account lockouts.
+- **Solution**: Multi-OS Python engine with automatic ArubaOS-S / ArubaOS-CX syntax fallback, physical VSF member unrolling, fan degradation alerts, fail-fast RADIUS/TACACS security, and 16-field Jira Assets (CMDB) export.
+- **Result**: Generates timestamped Excel workbooks and RFC-4180 CSVs ready for Jira bulk import, with 255 automated tests and zero-install portable Windows distribution.
+- **URL**: `https://github.com/mriazh/Switch-Collector`
 
-- `npm run build` succeeds.
-- `npm run lint` succeeds or any pre-existing lint issue is explicitly documented.
-- No secrets or `.env` values are added to tracked files.
-- Metadata uses one consistent HTTPS origin: `https://mriazh.my.id`.
-- The site remains deployable from the existing `master` branch workflow.
-- DNS and HTTPS verification evidence is recorded after the DNS provider changes are made.
+### Project 2: `MRTG-CMP` (RouterOS Telemetry & Autoscale Engine)
+- **ID**: `mrtg-cmp`
+- **Title**: `MRTG-CMP`
+- **Icon**: `BarChart3`
+- **Metric**: `API` | `RouterOS Polling` (or `150M` | `WAN Uplink`)
+- **Tags**: `['Python', 'RouterOS API', 'SQLite WAL', 'FastAPI', 'Matplotlib', 'WhatsApp Alert']`
+- **Problem**: Traditional SNMP UDP polling is lossy, lacks granular time-series storage, and provides no real-time notification during WAN link drops.
+- **Solution**: High-frequency RouterOS API polling over dedicated TCP tunnel, embedded SQLite WAL time-series storage, authentic RRDtool logarithmic autoscale graphing (`nice_ceiling`), and authenticated FastAPI web dashboard.
+- **Result**: Granular bandwidth telemetry across sub-15m to 30d windows, exportable to PNG/Excel/CSV, with self-healing tunnel watchdogs and instant WhatsApp downtime alerts.
+- **URL**: `https://github.com/mriazh/MRTG-CMP`
 
-## Acceptance criteria
+### Project 3: `MRTG-TelkomCare-Report-Automation` (Applied AI & Computer Vision ETL Pipeline)
+- **ID**: `mrtg-telkomcare-report-automation`
+- **Title**: `MRTG TelkomCare Report Automation`
+- **Icon**: `Cpu` (or `Bot`)
+- **Metric**: `Dual` | `OCR + Gemini AI`
+- **Tags**: `['Python', 'PaddleOCR', 'Gemini Vision API', 'PySide6', 'Selenium', 'openpyxl']`
+- **Problem**: Compiling monthly SLA bandwidth reports required manual portal logins, CAPTCHA solving, graph scraping, and manual visual legend transcribing across dozens of circuits.
+- **Solution**: End-to-end automation pipeline featuring automated CAPTCHA resolution, Google Authenticator TOTP injection, local PaddleOCR extraction, and multimodal Gemini Vision API fallback for low-confidence legend values.
+- **Result**: Generates formatted monthly Excel workbooks in unattended runs, packaged as a standalone desktop GUI application with Inno Setup installer and portable releases.
+- **URL**: `https://github.com/mriazh/MRTG-TelkomCare-Report-Automation`
 
-- [ ] Visiting `https://mriazh.my.id/` returns the portfolio over HTTPS.
-- [ ] The GitHub Pages repository Pages settings show `mriazh.my.id` as the custom domain and HTTPS is enabled once certificate issuance completes.
-- [ ] `index.html`, `robots.txt`, and `sitemap.xml` contain no stale canonical `mriazh.github.io` URL.
-- [ ] At least three featured projects reflect current repository evidence, including MRTG-Poncab and the updated automation projects.
-- [ ] Project links resolve to the intended public repositories.
-- [ ] Build and lint verification are captured in `docs/CONTEXT.md`.
-- [ ] DNS records are documented without exposing registrar credentials.
+## 4. Visual Design Anti-Slop Directives
+
+1. **Purge AI Slop Artifacts**:
+   - REMOVE top marquee scrolling banner (`.marquee-container`).
+   - REMOVE floating animated cartoon stickers around avatar (`.deco-sticker`).
+   - REMOVE bright yellow diagonal SVG slash dividers (`.section-divider`).
+   - REMOVE thick 3px black borders and 6px hard black drop-shadows.
+   - REMOVE loud candy colors (`--accent-yellow`, `--accent-pink`, `--accent-orange` background splashes).
+2. **Implement Dark Precision Aesthetics**:
+   - Background: Deep slate/zinc `#090d16` with refined radial dot-grid texture (`rgba(255, 255, 255, 0.04)`).
+   - Surfaces: Glassmorphic cards with subtle 1px border (`rgba(255, 255, 255, 0.08)` / `#1e293b`) and dark translucent background (`rgba(15, 23, 42, 0.75)`).
+   - Accent: Single authoritative terminal green (`#10b981`) with subtle cyan/blue telemetry accents (`#06b6d4`, `#3b82f6`).
+   - Hero Badge: Replace loud pill with a sleek live telemetry indicator (`🟢 Enterprise Network & AI Automation Engineer`).
+   - Skills & Projects: Cohesive dark surfaces with soft border highlights and readable contrast (WCAG AA compliant).
+3. **Typography**:
+   - Headlines: Space Grotesk with tight letter-spacing (`tracking-tight`).
+   - Telemetry/Numbers/Badges: JetBrains Mono for technical clarity.
+
+## 5. Non-Functional & Verification Requirements
+
+- Zero runtime regressions: `npm run lint` and `npm run build` must pass cleanly.
+- Full mobile responsiveness across `< 768px` breakpoints.
+- Honor `prefers-reduced-motion` media queries.
+- Clean semantic HTML and ARIA accessibility labels preserved.
+- No confidential hostnames or internal credentials exposed.

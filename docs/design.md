@@ -1,81 +1,92 @@
-# Portfolio Domain & Content Refresh Design
+# Portfolio Redesign: Dark Precision Engineering Design System
 
-## Design read
+## 1. Design Read & Philosophy
 
-Reading this as: an engineering portfolio for recruiters and technical collaborators, with a bold dark neobrutalist language, leaning toward a proof-led case-study presentation rather than a generic project gallery.
+- **Aesthetic Classification**: Dark Precision Engineering / High-Tech Infrastructure Dashboard.
+- **Reference Anchors**: Tailscale, Cloudflare Radar, Linear, HashiCorp.
+- **Dials**: ENERGY: 2 (Balanced), RHYTHM: 2 (Consistent with subtle offsets), MOTION: 2 (Restrained telemetry transitions).
+- **Core Principle**: Eliminate decorative AI-slop noise (marquee, wobbling stickers, 3px borders, hard drop-shadows, candy colors). Every visual token must communicate engineering rigor and precision.
 
-## Hosting architecture
+## 2. Color Palette & CSS Variables
 
-- Source: React 19 + Vite in `mriazh.github.io`.
-- Build: `npm run build` outputs `dist/`.
-- Hosting: GitHub Pages via the existing GitHub Actions workflow (`actions/configure-pages`, artifact upload, `actions/deploy-pages`).
-- Primary origin: `https://mriazh.my.id/`.
-- Compatibility origin: `https://mriazh.github.io/` remains available as the repository Pages URL; GitHub Pages custom-domain behavior should be allowed to redirect/serve according to GitHub's platform behavior.
+```css
+:root {
+  /* Backgrounds */
+  --bg-main: #090d16;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #1e293b;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --bg-card-hover: rgba(30, 41, 59, 0.8);
 
-## DNS plan
+  /* Typography */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
-The domain is delegated to Cloudflare nameservers, but current Windows DNS checks show no A/AAAA/CNAME records for `mriazh.my.id` or `www.mriazh.my.id` yet.
+  /* Borders & Grid */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.14);
+  --border-accent: rgba(16, 185, 129, 0.3);
 
-For the apex domain, configure the DNS provider with GitHub Pages' current documented A records:
+  /* Primary Accent: Terminal Emerald */
+  --accent-primary: #10b981;
+  --accent-primary-hover: #059669;
+  --accent-primary-glow: rgba(16, 185, 129, 0.15);
 
-- `@` A `185.199.108.153`
-- `@` A `185.199.109.153`
-- `@` A `185.199.110.153`
-- `@` A `185.199.111.153`
+  /* Secondary Accents */
+  --accent-cyan: #06b6d4;
+  --accent-blue: #3b82f6;
 
-Also configure the optional recommended hostname:
+  /* Elevation & Shadows */
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 10px 30px -4px rgba(0, 0, 0, 0.7), 0 0 20px -2px rgba(16, 185, 129, 0.15);
+  --shadow-glow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
 
-- `www` CNAME `mriazh.github.io`
+  /* Layout geometry */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --border-width: 1px;
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+```
 
-Set the repository Pages custom domain to `mriazh.my.id` before or alongside DNS setup, then wait for DNS propagation and certificate issuance. Do not add unrelated proxy/origin records. If Cloudflare proxying is enabled, verify GitHub Pages HTTPS behavior after certificate issuance; DNS-only is the least ambiguous initial setup.
+## 3. Component Architecture & Structural Changes
 
-## Application metadata design
+### 3.1 `src/App.jsx`
+- **REMOVE**: `<header className="marquee-container">...</header>`.
+- **REMOVE**: `<div className="section-divider">...</div>` (both normal and flipped yellow SVG slashes).
+- **STRUCTURE**: Clean sequence: `Navbar` -> `Hero` -> `SkillsSection` -> `ProjectsSection` -> `ContactFooter`.
+- Retain subtle cursor glow with softer telemetry opacity.
 
-Replace the old origin in all source-controlled public metadata:
+### 3.2 `src/components/Hero.jsx`
+- **Avatar & Visuals**:
+  - Clean frame with 1px border and soft ambient back-glow.
+  - **REMOVE**: `.deco-sticker` elements (all 4 wobbling stickers).
+- **Badge**:
+  - Live pulse dot + text: `🟢 Enterprise Network & AI Automation Engineer`.
+- **Headlines & Actions**:
+  - Refined typography: High-impact display text with crisp highlighting in terminal emerald.
+  - Buttons: Primary button with emerald fill (`#10b981`), secondary button with translucent dark surface and 1px border.
 
-- `<link rel="canonical">`
-- JSON-LD `url`
-- `og:url`
-- `og:image`
-- `twitter:image`
-- `public/robots.txt` sitemap URL
-- `public/sitemap.xml` location
-- README links and any portfolio badge links where appropriate
+### 3.3 `src/components/SkillsSection.jsx`
+- Replace `section--yellow` with a unified dark section background matching the rest of the site.
+- Bento cards styled with dark translucent glass surfaces (`--bg-card`), 1px borders, and emerald category markers.
+- High contrast, legible typography.
 
-Do not hard-code a Vite `base` path: the custom domain serves the site from `/`, matching the current deployment.
+### 3.4 `src/components/ProjectsSection.jsx`
+- Project Cards transformed into **Engineering Case Studies**:
+  - Metric column: Sleek numeric or telemetry badge (`255 Tests Passed`, `RouterOS API`, `PaddleOCR + Gemini`).
+  - Card body: Crisp hierarchy with Project title, tags, Problem, Solution, and Result.
+  - Direct repository links with subtle hover glow.
 
-## Content model
+### 3.5 `src/components/Navbar.jsx` & `ContactFooter.jsx`
+- Navbar: Frosted glass backdrop blur (`rgba(9, 13, 22, 0.8)`).
+- Footer: Deep dark background (no more bright blue fill), clean social links with subtle border hover states.
 
-Retain the existing `projectsData` model so the current card component remains stable. Update only evidence-backed fields and add projects through the same data contract if the worker determines the card layout supports it without making the page unwieldy.
+## 4. Curated Data Model (`src/data/projects.js`)
 
-Preferred content hierarchy:
-
-1. MRTG-CMP — strongest current monitoring/system product story (renamed from MRTG-Poncab).
-2. Automated WAC Huawei Crawl Data — concrete scale and network automation story.
-3. GMF CMP Automation — applied browser/IMAP/Excel workflow.
-4. GMF CMP Monitor — continuous monitoring and resilient connectivity story, if a fourth card is supported cleanly.
-5. MRTG TelkomCare — retain as a supporting OCR/reporting case study if it remains current.
-
-## Search Engine & Entity Optimization (@mriazh)
-
-To train Google's entity disambiguation models away from the false "mirazh" typo correction and associate the exact handle `mriazh` with `Muhammad Riyadh Azhar`:
-- Page title updated to `M Riyadh Azhar (@mriazh) | Network Automation Engineer`.
-- JSON-LD Person schema updated with `alternateName: ["mriazh", "Arap"]`.
-- Retain existing canonical links and Open Graph tags.
-
-Use outcomes and capabilities, not confidential infrastructure specifics. Avoid presenting unfinished work as production-complete.
-
-## Error handling and rollback
-
-- If DNS does not resolve, do not claim the migration is complete; record resolver evidence and leave the GitHub Pages URL as the known-good fallback.
-- If the Pages certificate is pending, use HTTP/DNS checks only and wait for HTTPS issuance rather than bypassing the certificate warning.
-- If content refresh causes layout or lint failures, revert the content/data change independently from domain metadata.
-- A rollback consists of restoring the prior metadata origin and/or removing the custom domain in GitHub Pages settings; DNS records can remain documented for a later retry.
-
-## Verification interfaces
-
-- Local: `npm run lint`, `npm run build`.
-- Static content: search source and built output for stale `mriazh.github.io` metadata.
-- DNS: `Resolve-DnsName` for apex A and `www` CNAME records against public resolvers.
-- HTTP/TLS: request `https://mriazh.my.id/`, `robots.txt`, and `sitemap.xml` after DNS and Pages settings are configured.
-- UI: browser smoke check for hero, navigation, project links, CV asset, and mobile menu.
+Export `projectsData` array containing:
+1. `switch-collector`: Unified Switch Collector
+2. `mrtg-cmp`: MRTG-CMP (RouterOS Telemetry & Autoscale)
+3. `mrtg-telkomcare-report-automation`: MRTG TelkomCare Report Automation

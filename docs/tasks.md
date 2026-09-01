@@ -1,24 +1,14 @@
-# Portfolio Domain & Content Refresh Tasks
+# Tasks: Portfolio Dark Precision Redesign
 
-## Dependency-ordered execution
+## Task Sequence
 
-- [x] T1. Audit current portfolio source, deployment workflow, metadata, and public sibling repositories. **Target:** orchestrator reconnaissance. **Depends on:** none.
-- [x] T2. Check current DNS and live-site status for `mriazh.my.id`, `www.mriazh.my.id`, and `mriazh.github.io`. **Target:** orchestrator verification. **Depends on:** T1.
-- [x] T3. Freeze requirements and design in `docs/requirements.md` and `docs/design.md`. **Target:** orchestrator planning. **Depends on:** T1, T2.
-- [x] T4. Update portfolio project data with current, evidence-backed repository capabilities; avoid secrets and unsupported claims. **Target:** free-stack implementation worker. **Depends on:** T3.
-- [x] T5. Update canonical/social/JSON-LD/robots/sitemap/README URLs to `https://mriazh.my.id`. **Target:** free-stack implementation worker. **Depends on:** T3.
-- [x] T6. Review the worker diff for scope, stale claims, accessibility regressions, and metadata consistency. **Target:** orchestrator review. **Depends on:** T4, T5.
-- [x] T7. Run `npm run lint` and `npm run build`; record exact evidence. **Target:** orchestrator verification. **Depends on:** T6.
-- [x] T8. Configure GitHub Pages custom domain in repository settings. **Target:** owner/operator action or supervised GitHub operation. **Depends on:** T3, DNS decision.
-- [x] T9. Configure Cloudflare DNS: four apex A records and optional `www` CNAME. **Target:** owner/operator action. **Depends on:** T8 (recommended ordering).
-- [x] T10. Recheck public DNS, HTTPS, robots, sitemap, and social assets after propagation/certificate issuance. **Target:** orchestrator verification. **Depends on:** T7, T8, T9.
-- [x] T11. Update `docs/CONTEXT.md` with final evidence, blockers, and handoff. **Target:** orchestrator. **Depends on:** T10.
-- [x] T12. Update `src/data/projects.js` to point MRTG-Poncab entry to MRTG-CMP and sanitize labels. **Target:** free-stack implementation worker. **Depends on:** T11.
-- [x] T13. Update `index.html` to add `@mriazh` to title and `alternateName: ["mriazh", "Arap"]` to JSON-LD. **Target:** free-stack implementation worker. **Depends on:** T11.
-- [x] T14. Verify build, lint, and diffs before final user review. **Target:** orchestrator verification. **Depends on:** T12, T13.
-
-## Worker constraints
-
-- Implementation must be delegated to a worker using only the `free-stack` model.
-- Worker must not modify files outside the repository's intended source, public metadata, README, and `/docs` handoff files.
-- No commit or push is authorized by this task specification unless the owner explicitly requests it.
+- [x] T1. Audit repository structure, past commitments, and user feedback regarding neobrutalism.
+- [x] T2. Curate genuine top-tier engineering projects across all sibling repositories.
+- [x] T3. Draft and freeze requirements and design specification in `docs/requirements.md` and `docs/design.md`.
+- [x] T4. Update `src/data/projects.js` to feature the curated top 3 projects (Switch-Collector, MRTG-CMP, MRTG-TelkomCare-Report-Automation). **Target:** free-stack worker.
+- [x] T5. Overhaul `src/App.jsx` to remove marquee banner and yellow SVG diagonal section dividers. **Target:** free-stack worker.
+- [x] T6. Overhaul `src/components/Hero.jsx` to remove wobbling cartoon stickers, add live telemetry status pill, and polish layout. **Target:** free-stack worker.
+- [x] T7. Overhaul `src/components/SkillsSection.jsx` to remove yellow background class and align with unified dark tech aesthetics. **Target:** free-stack worker.
+- [x] T8. Overhaul `src/index.css` to replace neobrutalism rules (3px borders, 6px hard shadows, candy colors) with Dark Precision Engineering design system tokens. **Target:** free-stack worker.
+- [x] T9. Verify changes with `git diff --check`, `npm run lint`, `npm run build`, and responsive inspection. **Target:** orchestrator.
+- [ ] T10. Review final diff with user, then commit with author `Muhammad Riyadh Azhar` and date `1 September 2026`, and push to GitHub. **Target:** orchestrator.
