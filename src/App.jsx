@@ -4,7 +4,10 @@ import { useMobileMenu } from './hooks/useMobileMenu';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import Navbar from './components/Navbar';
 import MobileMenu from './components/MobileMenu';
+import TelemetryBar from './components/TelemetryBar';
 import Hero from './components/Hero';
+import InteractiveTerminal from './components/InteractiveTerminal';
+import MetricsProof from './components/MetricsProof';
 import SkillsSection from './components/SkillsSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactFooter from './components/ContactFooter';
@@ -55,11 +58,14 @@ export default function App() {
         />
       )}
 
+      <TelemetryBar />
       <Navbar navScrolled={navScrolled} toggleMobileMenu={toggle} isOpen={isOpen} menuTriggerRef={menuTriggerRef} />
       <MobileMenu isOpen={isOpen} onClose={close} triggerRef={menuTriggerRef} />
 
       <main>
         <Hero />
+        <InteractiveTerminal />
+        <MetricsProof />
         <SkillsSection />
         <ProjectsSection />
       </main>

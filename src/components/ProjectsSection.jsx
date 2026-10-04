@@ -1,33 +1,68 @@
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { projectsData } from '../data/projects';
+import { projectsData, projectCategories } from '../data/projects';
 import CountUp from './CountUp';
 
-export default function ProjectsSection() {
-  const [titleProjRef, titleProjVis] = useScrollReveal({ rootMargin: '0px 0px -100px 0px' });
-  const [projRef1, projVis1] = useScrollReveal();
-  const [projRef2, projVis2] = useScrollReveal();
-  const [projRef3, projVis3] = useScrollReveal();
+function handleMouseMove(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+  e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+}
 
-  const projRefs = [
-    { ref: projRef1, vis: projVis1, delay: '0ms' },
-    { ref: projRef2, vis: projVis2, delay: '200ms' },
-    { ref: projRef3, vis: projVis3, delay: '400ms' },
-  ];
+export default function ProjectsSection() {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [titleProjRef, titleProjVis] = useScrollReveal({ rootMargin: '0px 0px -100px 0px' });
+  const [filterRef, filterVis] = useScrollReveal({ rootMargin: '0px 0px -50px 0px' });
+  const [listRef, listVis] = useScrollReveal({ rootMargin: '0px 0px -40px 0px' });
+
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'all') return projectsData;
+    return projectsData.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
+
+  const projRefs = useRef([]);
+
+  useEffect(() => {
+    projRefs.current = filteredProjects.map((_, idx) => ({
+      ref: null,
+      vis: false,
+      delay: `${idx * 180}ms`,
+    }));
+  }, [filteredProjects]);
 
   return (
     <section id="projects" className="section section--dark" aria-labelledby="projects-title">
       <div className="section-inner">
-        <h2 ref={titleProjRef} id="projects-title" className={`section-title ${titleProjVis ? 'reveal' : ''}`}>Featured Projects</h2>
-        <div className="projects-list">
-          {projectsData.map((project, idx) => {
-            const { ref, vis, delay } = projRefs[idx];
+        <h2 ref={titleProjRef} id="projects-title" className={`section-title ${titleProjVis ? 'reveal' : ''}`}>Curated Projects</h2>
+
+        <div ref={filterRef} className={`project-filters ${filterVis ? 'reveal' : ''}`} role="tablist" aria-label="Project categories">
+          {projectCategories.map((cat) => (
+            <button
+              key={cat.id}
+              role="tab"
+              aria-selected={activeCategory === cat.id}
+              aria-controls={`panel-${cat.id}`}
+              className={`filter-chip ${activeCategory === cat.id ? 'active' : ''}`}
+              onClick={() => setActiveCategory(cat.id)}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        <div ref={listRef} className="projects-list" role="tabpanel" id={`panel-${activeCategory}`} aria-label={`${activeCategory} projects`}>
+          {filteredProjects.map((project, idx) => {
+            const delay = `${idx * 180}ms`;
             const ProjectIcon = project.icon;
             return (
               <div
                 key={project.id}
-                ref={ref}
-                className={`project-card ${vis ? 'reveal' : ''}`}
+                ref={(el) => { if (projRefs.current[idx]) projRefs.current[idx].ref = el; }}
+                className={`project-card spotlight-card ${listVis ? 'reveal' : ''}`}
                 style={{ transitionDelay: delay }}
+                onMouseMove={handleMouseMove}
               >
                 <div className={`project-metric ${project.metric.colorClass}`}>
                   {project.metric.isText ? (
@@ -42,9 +77,6 @@ export default function ProjectsSection() {
                     <h3>
                       <ProjectIcon className="project-icon" aria-hidden="true" /> {project.title}
                     </h3>
-                    {project.statusBadge && (
-                      <span className="project-status">{project.statusBadge}</span>
-                    )}
                   </div>
                   <div className="project-tags">
                     {project.tags.map((tag) => (

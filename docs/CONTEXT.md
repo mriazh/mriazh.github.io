@@ -1,47 +1,27 @@
-# Session Context: Portfolio Redesign & Project Curation
-
-## Objective
-
-Redesign `mriazh.github.io` away from AI-slop Neobrutalism (marquee, cartoon stickers, diagonal yellow dividers, 3px borders, hard drop-shadows) toward a **Dark Precision Engineering** design system. Curate the top 3 projects to showcase genuine enterprise depth: `Switch-Collector` (255 unit tests, ArubaOS-CX), `MRTG-CMP` (RouterOS API, SQLite WAL), and `MRTG-TelkomCare-Report-Automation` (PaddleOCR + Gemini Vision fallback).
+# Session Context: Slower Cinematic Reveals, True Multi-Color Mouse Spotlight & Tech Arsenal Elevation (Iteration 5)
 
 ## Current State
 
-- Branch: `master`
-- All earlier domain metadata changes (`https://mriazh.my.id/`) and SEO entity tags (`@mriazh`) are committed in `9207b6f`.
-- Working tree is clean prior to documentation update.
-- Documentation frozen in `docs/requirements.md`, `docs/design.md`, `docs/tasks.md`.
+- Working tree has uncommitted local changes preserved for user local testing.
+- User feedback on Iteration 4:
+  1. Text scroll effects feel too fast ("terlalu cepet ya"). Needs more deliberate, cinematic pacing.
+  2. Tech Arsenal lacks visual energy and effects.
+  3. Mouse gradient is still not following the mouse. (Diagnosed: CSS specificity collision — `.skill-card::before`, `.project-card::before`, and `.metric-card::before` declared later in `src/index.css` overrode `.spotlight-card::before` with static linear-gradients and `z-index: -1`!).
+  4. User asked to delete the "Copy Clone" button.
+- Strictly NO commit or push per user instruction.
+- Zero-code policy outside `/docs` for orchestrator.
 
-## Key Decisions
+## Plan for Worker Dispatch (free-stack)
+1. T2: `src/components/ProjectsSection.jsx` -> Remove "Copy Clone" button and related states.
+2. T3: `src/index.css` -> Remove `.skill-card::before`, `.project-card::before`, and `.metric-card::before` overrides; elevate `.spotlight-card > *` to `z-index: 3`; increase scroll reveal duration to `1.2s`, `translateY(38px)`, and `filter: blur(10px)`; add Tech Arsenal badge pulse and list hover glow.
+3. T4: `src/components/SkillsSection.jsx` & `src/components/ProjectsSection.jsx` -> Set stagger delays to 180ms intervals.
+4. T5: Verify lint and build.
 
-1. **Top 3 Projects**:
-   - `Switch-Collector`: Replaces `Automated WAC Huawei Crawl Data`.
-   - `MRTG-CMP`: Replaces legacy `MRTG-Poncab` naming.
-   - `MRTG-TelkomCare-Report-Automation`: Retained and elevated as the AI Engineering bridge.
-2. **Visual Design Shift**:
-   - Palette: Deep charcoal `#090d16`, borders `rgba(255, 255, 255, 0.08)`, single terminal emerald accent `#10b981`.
-   - Banned: Marquee ticker, floating stickers around avatar, yellow diagonal SVG dividers, 3px borders, 6px hard shadows, neon candy colors.
-3. **Commit Target**:
-   - Author: `Muhammad Riyadh Azhar <mriyadhazhar@gmail.com>`
-   - Date: `2026-09-01T14:30:00+07:00`
-   - Style: Conventional commit with title & bulleted description.
-
-## Completed Implementation
-
-- Free-stack worker (`term_3f7dd786-1af2-4656-91ae-c2369c188634`) executed:
-  - `src/data/projects.js`: Curated Top 3 projects (Switch-Collector, MRTG-CMP, MRTG-TelkomCare-Report-Automation) with real metrics and accurate copy.
-  - `src/App.jsx`: Purged marquee container and diagonal yellow SVG section dividers.
-  - `src/components/Hero.jsx`: Removed all 4 wobbling cartoon stickers, installed live telemetry status pill.
-  - `src/components/SkillsSection.jsx`: Removed `section--yellow` class for dark aesthetic cohesion.
-  - `src/index.css`: Overhauled design system from Neobrutalism to Dark Precision Engineering.
-  - `index.html`: Updated theme color to `#090d16`.
-- Verification passed: `git diff --check`, `npm run lint` (0 errors), `npm run build` (success in 1.75s).
-- Sibling repositories were strictly untouched.
-
-## Active Blockers
-
-- Ready for commit and push per user instructions.
-
-## Immediate Next Actions
-
-1. Commit all modified files with author `Muhammad Riyadh Azhar` and date `1 September 2026`.
-2. Push to `origin master` and monitor GitHub Actions deployment.
+## Verification Evidence (Iteration 5)
+- ESLint clean (0 errors, 0 warnings).
+- Vite build succeeds cleanly (1787 modules transformed, under 1s, dist bundle generated).
+- "Copy Clone" Button: Fully removed from `src/components/ProjectsSection.jsx` and `src/index.css` per user instruction.
+- Fixed Mouse Spotlight Tracking: Eliminated conflicting static `::before` overrides in `src/index.css` (`.skill-card::before`, `.project-card::before`, `.metric-card::before`). Consolidated all spotlight glow onto `.spotlight-card::before` (`z-index: 1`) and `.spotlight-card::after` (`z-index: 2`), with card children elevated to `z-index: 3`. Now the luminous radial multi-color gradient (`emerald -> cyan -> violet`) directly follows `--mouse-x` and `--mouse-y` coordinates across all cards!
+- Slower Cinematic Scroll Reveals: Increased transition duration to `1.2s` with `translateY(38px)` and deep optical de-blurring (`filter: blur(10px)` -> `blur(0)`). Increased card stagger intervals to `180ms` (0ms, 180ms, 360ms, 540ms) for a deliberate, luxurious entrance.
+- Tech Arsenal Elevation: Added glowing breathing pulse animation (`@keyframes badgePulse`) to status badges (`CORE`, `FOCUS`, `APPLIED`, `SUPPORT`), dynamic icon scale and drop-shadow on card hover, and glowing bullet expansion on list item hover.
+- Ready for commit and push per user authorization.

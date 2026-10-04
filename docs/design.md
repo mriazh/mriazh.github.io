@@ -1,92 +1,112 @@
-# Portfolio Redesign: Dark Precision Engineering Design System
+# Technical Design: Slower Cinematic Reveals, True Multi-Color Mouse Spotlight & Tech Arsenal Elevation (Iteration 5)
 
-## 1. Design Read & Philosophy
+## 1. Mouse Spotlight Specificity Fix & Architecture
 
-- **Aesthetic Classification**: Dark Precision Engineering / High-Tech Infrastructure Dashboard.
-- **Reference Anchors**: Tailscale, Cloudflare Radar, Linear, HashiCorp.
-- **Dials**: ENERGY: 2 (Balanced), RHYTHM: 2 (Consistent with subtle offsets), MOTION: 2 (Restrained telemetry transitions).
-- **Core Principle**: Eliminate decorative AI-slop noise (marquee, wobbling stickers, 3px borders, hard drop-shadows, candy colors). Every visual token must communicate engineering rigor and precision.
-
-## 2. Color Palette & CSS Variables
-
+### 1.1 Root Cause Analysis of Non-Tracking Spotlight
+Lines 718 (`.skill-card::before`), 755 (`.project-card::before`), and 1376 (`.metric-card::before`) in `src/index.css` had redundant pseudo-elements declared later in the stylesheet:
 ```css
-:root {
-  /* Backgrounds */
-  --bg-main: #090d16;
-  --bg-surface: #0f172a;
-  --bg-surface-elevated: #1e293b;
-  --bg-card: rgba(15, 23, 42, 0.7);
-  --bg-card-hover: rgba(30, 41, 59, 0.8);
+.skill-card::before, .project-card::before, .metric-card::before {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(6, 182, 212, 0.15), transparent 60%);
+  z-index: -1;
+}
+```
+Because they appeared later in the stylesheet with identical specificity, they overrode `.spotlight-card::before` with a static linear gradient and shoved it behind the opaque card background (`z-index: -1`), completely disabling dynamic cursor tracking!
 
-  /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+### 1.2 Consolidated Spotlight Rules
+Remove all `.skill-card::before`, `.project-card::before`, `.metric-card::before` overrides.
+Consolidate onto `.spotlight-card`:
+```css
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: -200px;
+  --mouse-y: -200px;
+}
 
-  /* Borders & Grid */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.14);
-  --border-accent: rgba(16, 185, 129, 0.3);
+/* Surface glow at z-index 1 */
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    560px circle at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(16, 185, 129, 0.28) 0%,
+    rgba(6, 182, 212, 0.20) 25%,
+    rgba(99, 102, 241, 0.12) 50%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
 
-  /* Primary Accent: Terminal Emerald */
-  --accent-primary: #10b981;
-  --accent-primary-hover: #059669;
-  --accent-primary-glow: rgba(16, 185, 129, 0.15);
+/* Border illumination at z-index 2 */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, -200px) var(--mouse-y, -200px),
+    rgba(16, 185, 129, 0.9) 0%,
+    rgba(6, 182, 212, 0.7) 30%,
+    rgba(99, 102, 241, 0.5) 60%,
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 1px;
+}
 
-  /* Secondary Accents */
-  --accent-cyan: #06b6d4;
-  --accent-blue: #3b82f6;
+.spotlight-card:hover::before,
+.spotlight-card:hover::after {
+  opacity: 1;
+}
 
-  /* Elevation & Shadows */
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  --shadow-card-hover: 0 10px 30px -4px rgba(0, 0, 0, 0.7), 0 0 20px -2px rgba(16, 185, 129, 0.15);
-  --shadow-glow: 0 0 25px -5px rgba(16, 185, 129, 0.25);
-
-  /* Layout geometry */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --border-width: 1px;
-  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* Elevate card children to z-index 3 so they sit safely above the surface glow */
+.spotlight-card > * {
+  position: relative;
+  z-index: 3;
 }
 ```
 
-## 3. Component Architecture & Structural Changes
+## 2. Cinematic Slower Scroll Reveal Engine
 
-### 3.1 `src/App.jsx`
-- **REMOVE**: `<header className="marquee-container">...</header>`.
-- **REMOVE**: `<div className="section-divider">...</div>` (both normal and flipped yellow SVG slashes).
-- **STRUCTURE**: Clean sequence: `Navbar` -> `Hero` -> `SkillsSection` -> `ProjectsSection` -> `ContactFooter`.
-- Retain subtle cursor glow with softer telemetry opacity.
+- Upgrade transition parameters to provide a deliberate, high-end editorial feel:
+  - Duration: `1.2s`
+  - Easing: `cubic-bezier(0.16, 1, 0.3, 1)`
+  - Distance: `translateY(38px)`
+  - Blur: `filter: blur(10px)` $\rightarrow$ `filter: blur(0)`
+  - Stagger delay between items: `180ms` (0ms, 180ms, 360ms, 540ms)
 
-### 3.2 `src/components/Hero.jsx`
-- **Avatar & Visuals**:
-  - Clean frame with 1px border and soft ambient back-glow.
-  - **REMOVE**: `.deco-sticker` elements (all 4 wobbling stickers).
-- **Badge**:
-  - Live pulse dot + text: `🟢 Enterprise Network & AI Automation Engineer`.
-- **Headlines & Actions**:
-  - Refined typography: High-impact display text with crisp highlighting in terminal emerald.
-  - Buttons: Primary button with emerald fill (`#10b981`), secondary button with translucent dark surface and 1px border.
+## 3. Tech Arsenal Visual Elevation
 
-### 3.3 `src/components/SkillsSection.jsx`
-- Replace `section--yellow` with a unified dark section background matching the rest of the site.
-- Bento cards styled with dark translucent glass surfaces (`--bg-card`), 1px borders, and emerald category markers.
-- High contrast, legible typography.
+- Add glowing breathing pulse animation to category badges (`.skill-card-badge`):
+  ```css
+  @keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    50% { box-shadow: 0 0 12px 2px rgba(16, 185, 129, 0.35); }
+  }
+  ```
+- Icon hover enhancement: The skill icon container illuminates with a subtle radial gradient.
+- List item hover: Bullet points scale up (`scale(1.4)`) and glow with `rgba(16, 185, 129, 0.7)`.
 
-### 3.4 `src/components/ProjectsSection.jsx`
-- Project Cards transformed into **Engineering Case Studies**:
-  - Metric column: Sleek numeric or telemetry badge (`255 Tests Passed`, `RouterOS API`, `PaddleOCR + Gemini`).
-  - Card body: Crisp hierarchy with Project title, tags, Problem, Solution, and Result.
-  - Direct repository links with subtle hover glow.
+## 4. Deletion of "Copy Clone" Button
 
-### 3.5 `src/components/Navbar.jsx` & `ContactFooter.jsx`
-- Navbar: Frosted glass backdrop blur (`rgba(9, 13, 22, 0.8)`).
-- Footer: Deep dark background (no more bright blue fill), clean social links with subtle border hover states.
+- Remove `copy-clone-btn` from `src/components/ProjectsSection.jsx` and `src/index.css`.
 
-## 4. Curated Data Model (`src/data/projects.js`)
 
-Export `projectsData` array containing:
-1. `switch-collector`: Unified Switch Collector
-2. `mrtg-cmp`: MRTG-CMP (RouterOS Telemetry & Autoscale)
-3. `mrtg-telkomcare-report-automation`: MRTG TelkomCare Report Automation
+
+## 4. Interactive Terminal History
+
+- `InteractiveTerminal.jsx`:
+  - Add `history` array state and `historyIndex`.
+  - Pressing `ArrowUp` navigates backward through previously executed commands.
+  - Pressing `ArrowDown` navigates forward through command history.

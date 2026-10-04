@@ -1,14 +1,9 @@
-# Tasks: Portfolio Dark Precision Redesign
+# Tasks: Slower Cinematic Reveals, True Multi-Color Mouse Spotlight & Tech Arsenal Elevation (Iteration 5)
 
-## Task Sequence
-
-- [x] T1. Audit repository structure, past commitments, and user feedback regarding neobrutalism.
-- [x] T2. Curate genuine top-tier engineering projects across all sibling repositories.
-- [x] T3. Draft and freeze requirements and design specification in `docs/requirements.md` and `docs/design.md`.
-- [x] T4. Update `src/data/projects.js` to feature the curated top 3 projects (Switch-Collector, MRTG-CMP, MRTG-TelkomCare-Report-Automation). **Target:** free-stack worker.
-- [x] T5. Overhaul `src/App.jsx` to remove marquee banner and yellow SVG diagonal section dividers. **Target:** free-stack worker.
-- [x] T6. Overhaul `src/components/Hero.jsx` to remove wobbling cartoon stickers, add live telemetry status pill, and polish layout. **Target:** free-stack worker.
-- [x] T7. Overhaul `src/components/SkillsSection.jsx` to remove yellow background class and align with unified dark tech aesthetics. **Target:** free-stack worker.
-- [x] T8. Overhaul `src/index.css` to replace neobrutalism rules (3px borders, 6px hard shadows, candy colors) with Dark Precision Engineering design system tokens. **Target:** free-stack worker.
-- [x] T9. Verify changes with `git diff --check`, `npm run lint`, `npm run build`, and responsive inspection. **Target:** orchestrator.
-- [ ] T10. Review final diff with user, then commit with author `Muhammad Riyadh Azhar` and date `1 September 2026`, and push to GitHub. **Target:** orchestrator.
+- [x] T1. Freeze specifications in `docs/requirements.md` and `docs/design.md`.
+- [x] T2. Update `src/components/ProjectsSection.jsx` to remove the "Copy Clone" button and unused handlers/states. **Target:** free-stack worker.
+- [x] T3. Update `src/index.css` to fix the spotlight CSS specificity bug by removing `.skill-card::before`, `.project-card::before`, and `.metric-card::before` overrides; elevate card children to `z-index: 3`; slow down scroll reveal duration to 1.2s with `translateY(38px)` and `blur(10px)`; and add breathing badge pulse and list hover glow to Tech Arsenal. **Target:** free-stack worker.
+- [x] T4. Update `src/components/SkillsSection.jsx` and `src/components/ProjectsSection.jsx` stagger delays to 180ms intervals. **Target:** free-stack worker.
+- [x] T5. Verify with `npm run lint` and `npm run build` and check browser (NO commit/push). **Target:** orchestrator.
+- [x] T6. Hand over to user for testing at `http://localhost:5173/`. **Target:** orchestrator.
+- [x] T7. Commit with date 4 Oktober 2026 and push to origin master per user instruction. **Target:** orchestrator.

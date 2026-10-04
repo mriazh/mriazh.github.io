@@ -1,76 +1,38 @@
-# Portfolio Redesign: Dark Precision Engineering & Curated Project Showcase
+# Requirements: Creative Infrastructure Console (Iteration 5 - Slower Cinematic Reveals, True Multi-Color Mouse Spotlight & Tech Arsenal Elevation)
 
-## 1. Problem Statement
+## 1. Problem Statement & User Feedback
+1. **Scroll Reveals Too Fast**: The entrance animations currently trigger too quickly (0.8s), making the blur-to-clear and slide-up feel snappy rather than luxurious, deliberate, and cinematic.
+2. **Tech Arsenal Lacks Effects**: The Tech Arsenal bento grid needs more visual energy, internal stagger, glowing badge pulses, and interactive list hover dynamics.
+3. **Card Gradient Not Following Mouse**: The mouse spotlight was being overwritten by static `linear-gradient` and `z-index: -1` rules defined later in the CSS file (`.skill-card::before`, `.project-card::before`, `.metric-card::before`), completely breaking cursor tracking!
+4. **Remove "Copy Clone" Button**: The user explicitly requested to remove the "Copy Clone" button from project cards.
 
-The current portfolio design suffers from:
-1. **AI-Slop Neobrutalism**: Loud candy colors (yellow, pink, cyan, green), thick 3px black borders, harsh 6px black drop-shadows, diagonal yellow SVG dividers, wobbling cartoon stickers around the avatar, and a scrolling marquee ticker. This aesthetic undermines technical authority for an enterprise infrastructure and network automation engineer.
-2. **Outdated Project Selection**: Outdated and retired projects (such as `Automated WAC Huawei Crawl Data`) are featured, while the strongest, most complex engineering projects in the developer's portfolio (`Switch-Collector` with 255 passing tests, `MRTG-CMP` with RouterOS API & autoscale engine, and `MRTG-TelkomCare-Report-Automation` with PaddleOCR + Gemini Vision fallback) are omitted.
+## 2. Requirements Specification
 
-## 2. Objective & User Stories
+### 2.1 Remove "Copy Clone" Button
+- Completely remove the `copy-clone-btn` and related state/handler from `src/components/ProjectsSection.jsx` and `src/index.css`.
+- Keep the clean header: Project icon + Project title + View Repository link.
 
-- **Target Persona**: Engineering Managers, Infrastructure Leads, and AI Automation Recruiters.
-- **Aesthetic Direction**: **Dark Precision Engineering** — clean, authoritative, dark-tech, telemetry-driven, minimal, high-craftsmanship (inspired by Tailscale, Linear, and Cloudflare Radar).
-- **Core Value Proposition**: An enterprise network automation engineer who builds production-grade telemetry systems, multi-vendor CLI engines, and Applied AI data pipelines.
+### 2.2 Fix Multi-Color Dynamic Mouse Spotlight Engine
+- Root cause: Lines 718, 755, and 1376 in `src/index.css` had redundant `::before` declarations with static `linear-gradient` and `z-index: -1` that overrode `.spotlight-card::before`.
+- Fix:
+  - Remove all redundant `::before` and `::before:hover` rules from `.skill-card`, `.project-card`, and `.metric-card`.
+  - Consolidate all spotlight behavior into `.spotlight-card::before` (`z-index: 1`) and `.spotlight-card::after` (`z-index: 2`).
+  - Surface gradient (`::before`): Vibrant multi-color radial gradient tracking `--mouse-x` and `--mouse-y` (`#10b981` emerald $\rightarrow$ `#06b6d4` cyan $\rightarrow$ `#6366f1` violet).
+  - Border aura (`::after`): Multi-color gradient edge tracing cursor around card perimeter (`mask-composite: exclude`).
+  - Card-specific accent variants (Amber for TelkomCare, Blue for RouterOS, Cyan for devices).
+  - Elevate card contents (`.project-body`, `.project-metric`, `.skill-card-header`, `.skill-list`, `.metric-icon`, etc.) to `position: relative; z-index: 3;` so text and links remain crisp and clickable above the spotlight.
 
-## 3. Curated Project Showcase
+### 2.3 Slower, Cinematic Kinetic Scroll Reveal
+- Increase scroll transition duration from `0.8s` to `1.2s` with smooth luxury easing `cubic-bezier(0.16, 1, 0.3, 1)`.
+- Increase entrance distance: `transform: translateY(38px); filter: blur(10px); opacity: 0;` $\rightarrow$ `transform: translateY(0); filter: blur(0); opacity: 1;`.
+- Increase cascade stagger delays to `180ms` (0ms, 180ms, 360ms, 540ms) for a distinct wave effect.
 
-Replace the existing project list with the top 3 production-grade systems:
+### 2.4 Elevate Tech Arsenal Section
+- Add subtle ambient breathing pulse on category badges (`CORE`, `FOCUS`, `APPLIED`, `SUPPORT`).
+- Add glowing icon backdrops and hover expansion on bullet points (`.skill-list li`).
+- Ensure all 4 bento cards cascade smoothly into view with the slower 1.2s cinematic reveal.
 
-### Project 1: `Switch-Collector` (Enterprise Multi-OS Switch Auditor)
-- **ID**: `switch-collector`
-- **Title**: `Unified Switch Collector`
-- **Icon**: `Server` (or `ShieldCheck`)
-- **Metric**: `255` | `Tests Passed` (or `Multi-OS` | `Aruba & ProCurve`)
-- **Tags**: `['Python', 'Netmiko', 'Pytest (255 tests)', 'ArubaOS-CX', 'Jira CMDB', 'PyInstaller']`
-- **Problem**: Manually auditing serial numbers, hardware fan health, PoE budgets, and VSF stack chassis across enterprise switch fleets via CLI is time-consuming and risks account lockouts.
-- **Solution**: Multi-OS Python engine with automatic ArubaOS-S / ArubaOS-CX syntax fallback, physical VSF member unrolling, fan degradation alerts, fail-fast RADIUS/TACACS security, and 16-field Jira Assets (CMDB) export.
-- **Result**: Generates timestamped Excel workbooks and RFC-4180 CSVs ready for Jira bulk import, with 255 automated tests and zero-install portable Windows distribution.
-- **URL**: `https://github.com/mriazh/Switch-Collector`
-
-### Project 2: `MRTG-CMP` (RouterOS Telemetry & Autoscale Engine)
-- **ID**: `mrtg-cmp`
-- **Title**: `MRTG-CMP`
-- **Icon**: `BarChart3`
-- **Metric**: `API` | `RouterOS Polling` (or `150M` | `WAN Uplink`)
-- **Tags**: `['Python', 'RouterOS API', 'SQLite WAL', 'FastAPI', 'Matplotlib', 'WhatsApp Alert']`
-- **Problem**: Traditional SNMP UDP polling is lossy, lacks granular time-series storage, and provides no real-time notification during WAN link drops.
-- **Solution**: High-frequency RouterOS API polling over dedicated TCP tunnel, embedded SQLite WAL time-series storage, authentic RRDtool logarithmic autoscale graphing (`nice_ceiling`), and authenticated FastAPI web dashboard.
-- **Result**: Granular bandwidth telemetry across sub-15m to 30d windows, exportable to PNG/Excel/CSV, with self-healing tunnel watchdogs and instant WhatsApp downtime alerts.
-- **URL**: `https://github.com/mriazh/MRTG-CMP`
-
-### Project 3: `MRTG-TelkomCare-Report-Automation` (Applied AI & Computer Vision ETL Pipeline)
-- **ID**: `mrtg-telkomcare-report-automation`
-- **Title**: `MRTG TelkomCare Report Automation`
-- **Icon**: `Cpu` (or `Bot`)
-- **Metric**: `Dual` | `OCR + Gemini AI`
-- **Tags**: `['Python', 'PaddleOCR', 'Gemini Vision API', 'PySide6', 'Selenium', 'openpyxl']`
-- **Problem**: Compiling monthly SLA bandwidth reports required manual portal logins, CAPTCHA solving, graph scraping, and manual visual legend transcribing across dozens of circuits.
-- **Solution**: End-to-end automation pipeline featuring automated CAPTCHA resolution, Google Authenticator TOTP injection, local PaddleOCR extraction, and multimodal Gemini Vision API fallback for low-confidence legend values.
-- **Result**: Generates formatted monthly Excel workbooks in unattended runs, packaged as a standalone desktop GUI application with Inno Setup installer and portable releases.
-- **URL**: `https://github.com/mriazh/MRTG-TelkomCare-Report-Automation`
-
-## 4. Visual Design Anti-Slop Directives
-
-1. **Purge AI Slop Artifacts**:
-   - REMOVE top marquee scrolling banner (`.marquee-container`).
-   - REMOVE floating animated cartoon stickers around avatar (`.deco-sticker`).
-   - REMOVE bright yellow diagonal SVG slash dividers (`.section-divider`).
-   - REMOVE thick 3px black borders and 6px hard black drop-shadows.
-   - REMOVE loud candy colors (`--accent-yellow`, `--accent-pink`, `--accent-orange` background splashes).
-2. **Implement Dark Precision Aesthetics**:
-   - Background: Deep slate/zinc `#090d16` with refined radial dot-grid texture (`rgba(255, 255, 255, 0.04)`).
-   - Surfaces: Glassmorphic cards with subtle 1px border (`rgba(255, 255, 255, 0.08)` / `#1e293b`) and dark translucent background (`rgba(15, 23, 42, 0.75)`).
-   - Accent: Single authoritative terminal green (`#10b981`) with subtle cyan/blue telemetry accents (`#06b6d4`, `#3b82f6`).
-   - Hero Badge: Replace loud pill with a sleek live telemetry indicator (`🟢 Enterprise Network & AI Automation Engineer`).
-   - Skills & Projects: Cohesive dark surfaces with soft border highlights and readable contrast (WCAG AA compliant).
-3. **Typography**:
-   - Headlines: Space Grotesk with tight letter-spacing (`tracking-tight`).
-   - Telemetry/Numbers/Badges: JetBrains Mono for technical clarity.
-
-## 5. Non-Functional & Verification Requirements
-
-- Zero runtime regressions: `npm run lint` and `npm run build` must pass cleanly.
-- Full mobile responsiveness across `< 768px` breakpoints.
-- Honor `prefers-reduced-motion` media queries.
-- Clean semantic HTML and ARIA accessibility labels preserved.
-- No confidential hostnames or internal credentials exposed.
+### 2.5 Strict Constraints
+- Commit date: 4 Oktober 2026.
+- Author: Muhammad Riyadh Azhar <mriyadhazhar@gmail.com>.
+- Verify with `npm run lint` and `npm run build`.
