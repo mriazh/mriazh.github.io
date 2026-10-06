@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { projectsData, projectCategories } from '../data/projects';
 import CountUp from './CountUp';
@@ -22,16 +22,6 @@ export default function ProjectsSection() {
     return projectsData.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
 
-  const projRefs = useRef([]);
-
-  useEffect(() => {
-    projRefs.current = filteredProjects.map((_, idx) => ({
-      ref: null,
-      vis: false,
-      delay: `${idx * 180}ms`,
-    }));
-  }, [filteredProjects]);
-
   return (
     <section id="projects" className="section section--dark" aria-labelledby="projects-title">
       <div className="section-inner">
@@ -54,14 +44,13 @@ export default function ProjectsSection() {
 
         <div ref={listRef} className="projects-list" role="tabpanel" id={`panel-${activeCategory}`} aria-label={`${activeCategory} projects`}>
           {filteredProjects.map((project, idx) => {
-            const delay = `${idx * 180}ms`;
             const ProjectIcon = project.icon;
             return (
               <div
                 key={project.id}
-                ref={(el) => { if (projRefs.current[idx]) projRefs.current[idx].ref = el; }}
                 className={`project-card spotlight-card ${listVis ? 'reveal' : ''}`}
-                style={{ transitionDelay: delay }}
+                style={{ transitionDelay: listVis ? '0ms' : `${idx * 180}ms` }}
+                onMouseEnter={handleMouseMove}
                 onMouseMove={handleMouseMove}
               >
                 <div className={`project-metric ${project.metric.colorClass}`}>

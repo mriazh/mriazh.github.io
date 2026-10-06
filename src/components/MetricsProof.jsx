@@ -59,6 +59,7 @@ export default function MetricsProof() {
               className={`metric-card spotlight-card ${gridVis ? 'reveal' : ''} ${metric.iconClass}`}
               style={{ transitionDelay: `${idx * 180}ms` }}
               role="listitem"
+              onMouseEnter={handleMouseMove}
               onMouseMove={handleMouseMove}
             >
               <div className="metric-icon" style={{ borderColor: metric.accentColor }} aria-hidden="true">

@@ -67,9 +67,36 @@
   border-radius: var(--radius-sm);
 }
 
+/* --- Custom Precision Scrollbar --- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) var(--bg-main);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 4px;
+  border: 2px solid var(--bg-main);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+}
+
 /* --- Reset & Base --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   font-family: var(--font-display);
@@ -77,7 +104,7 @@ body {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 28px 28px;
   color: var(--text-primary);
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -166,6 +193,16 @@ a { text-decoration: none; color: inherit; }
   opacity: 1;
 }
 
+.spotlight-card:hover,
+.spotlight-card:hover *,
+.spotlight-card:hover::before,
+.spotlight-card:hover::after,
+.project-card:hover,
+.metric-card:hover,
+.skill-card:hover {
+  transition-delay: 0s !important;
+}
+
 .spotlight-card > * {
   position: relative;
   z-index: 3;
@@ -241,18 +278,19 @@ a { text-decoration: none; color: inherit; }
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(9, 13, 22, 0.72);
-  border-bottom: var(--border-width) solid var(--border);
+  z-index: 1000;
+  background: rgba(9, 13, 22, 0.78);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0.85rem 2rem;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: background 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .navbar--scrolled {
-  background: rgba(9, 13, 22, 0.9);
-  box-shadow: 0 1px 24px rgba(0, 0, 0, 0.6);
+  background: rgba(9, 13, 22, 0.92);
+  border-bottom-color: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
 }
 
 .nav-content {
@@ -555,7 +593,6 @@ a { text-decoration: none; color: inherit; }
 
 /* --- Section Common --- */
 .section {
-  border-top: var(--border-width) solid var(--border);
   padding: 6rem 2rem;
   position: relative;
 }
@@ -1041,8 +1078,7 @@ a { text-decoration: none; color: inherit; }
 
 /* --- Telemetry Bar --- */
 .telemetry-bar {
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 90;
   background: rgba(8, 9, 12, 0.85);
   border-bottom: var(--border-width) solid var(--border);
@@ -1285,7 +1321,6 @@ a { text-decoration: none; color: inherit; }
 
 /* --- Metrics Proof --- */
 .metrics-proof {
-  border-top: var(--border-width) solid var(--border);
   padding: 6rem 2rem;
   position: relative;
 }

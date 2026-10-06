@@ -37,6 +37,7 @@ export default function SkillsSection() {
                 ref={ref}
                 className={`neo-card skill-card spotlight-card ${category.cardClass} ${vis ? 'reveal' : ''}`}
                 style={{ transitionDelay: `${idx * 180}ms` }}
+                onMouseEnter={handleMouseMove}
                 onMouseMove={handleMouseMove}
               >
                 <div className="skill-card-header">

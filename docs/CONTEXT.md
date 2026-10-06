@@ -1,27 +1,18 @@
-# Session Context: Slower Cinematic Reveals, True Multi-Color Mouse Spotlight & Tech Arsenal Elevation (Iteration 5)
+# Session Context: Project Card Spotlight Consistency Fix (Iteration 7)
 
 ## Current State
 
-- Working tree has uncommitted local changes preserved for user local testing.
-- User feedback on Iteration 4:
-  1. Text scroll effects feel too fast ("terlalu cepet ya"). Needs more deliberate, cinematic pacing.
-  2. Tech Arsenal lacks visual energy and effects.
-  3. Mouse gradient is still not following the mouse. (Diagnosed: CSS specificity collision — `.skill-card::before`, `.project-card::before`, and `.metric-card::before` declared later in `src/index.css` overrode `.spotlight-card::before` with static linear-gradients and `z-index: -1`!).
-  4. User asked to delete the "Copy Clone" button.
-- Strictly NO commit or push per user instruction.
+- User feedback: Curated Projects Card 1 was smooth, but Cards 2, 3, and 4 felt laggy/buggy when mouse hovered over them.
+- Root cause: Staggered entrance delays (`delay: idx * 180ms`) set via inline `style={{ transitionDelay }}` were inherited by hover transitions and pseudo-element opacity transitions (`::before` / `::after`), delaying Card 2 by 180ms, Card 3 by 360ms, and Card 4 by 540ms!
+- STRICTLY NO COMMIT OR PUSH ("jangan commit dulu, nanti gua cobain").
 - Zero-code policy outside `/docs` for orchestrator.
 
-## Plan for Worker Dispatch (free-stack)
-1. T2: `src/components/ProjectsSection.jsx` -> Remove "Copy Clone" button and related states.
-2. T3: `src/index.css` -> Remove `.skill-card::before`, `.project-card::before`, and `.metric-card::before` overrides; elevate `.spotlight-card > *` to `z-index: 3`; increase scroll reveal duration to `1.2s`, `translateY(38px)`, and `filter: blur(10px)`; add Tech Arsenal badge pulse and list hover glow.
-3. T4: `src/components/SkillsSection.jsx` & `src/components/ProjectsSection.jsx` -> Set stagger delays to 180ms intervals.
-4. T5: Verify lint and build.
-
-## Verification Evidence (Iteration 5)
+## Verification Evidence (Iteration 7)
 - ESLint clean (0 errors, 0 warnings).
-- Vite build succeeds cleanly (1787 modules transformed, under 1s, dist bundle generated).
-- "Copy Clone" Button: Fully removed from `src/components/ProjectsSection.jsx` and `src/index.css` per user instruction.
-- Fixed Mouse Spotlight Tracking: Eliminated conflicting static `::before` overrides in `src/index.css` (`.skill-card::before`, `.project-card::before`, `.metric-card::before`). Consolidated all spotlight glow onto `.spotlight-card::before` (`z-index: 1`) and `.spotlight-card::after` (`z-index: 2`), with card children elevated to `z-index: 3`. Now the luminous radial multi-color gradient (`emerald -> cyan -> violet`) directly follows `--mouse-x` and `--mouse-y` coordinates across all cards!
-- Slower Cinematic Scroll Reveals: Increased transition duration to `1.2s` with `translateY(38px)` and deep optical de-blurring (`filter: blur(10px)` -> `blur(0)`). Increased card stagger intervals to `180ms` (0ms, 180ms, 360ms, 540ms) for a deliberate, luxurious entrance.
-- Tech Arsenal Elevation: Added glowing breathing pulse animation (`@keyframes badgePulse`) to status badges (`CORE`, `FOCUS`, `APPLIED`, `SUPPORT`), dynamic icon scale and drop-shadow on card hover, and glowing bullet expansion on list item hover.
-- Ready for commit and push per user authorization.
+- Vite build succeeds cleanly (1787 modules transformed, dist bundle generated).
+- Fixed Spotlight Lag on Cards 2-4: Root cause was inline `style={{ transitionDelay: idx * 180ms }}` being inherited by hover transitions and `.spotlight-card::before` opacity fade-in, causing up to 540ms delay on card 4.
+- Added `transition-delay: 0s !important` on hover across all cards, pseudo-elements, and children in `src/index.css`.
+- Reset `transitionDelay` to `0ms` post-reveal in `ProjectsSection.jsx`.
+- Added `onMouseEnter={handleMouseMove}` across Projects, Skills, and Metrics cards for instantaneous coordinate initialization.
+- Removed dead `projRefs` code from `ProjectsSection.jsx`.
+- Working tree uncommitted per instruction. Zero git commits or pushes made.
