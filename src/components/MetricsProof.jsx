@@ -11,10 +11,10 @@ const metrics = [
     iconClass: 'metric-icon--green',
   },
   {
-    target: 450,
+    target: 190,
     suffix: '+',
-    label: 'Network Devices Audited',
-    sublabel: 'Aruba, Huawei, Cisco, MikroTik',
+    label: 'Hosts Monitored',
+    sublabel: 'LibreNMS & PRTG Telemetry',
     accentColor: 'var(--accent-cyan)',
     iconClass: 'metric-icon--cyan',
   },

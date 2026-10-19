@@ -31,7 +31,8 @@ export const skillsData = [
     items: [
       { text: 'MikroTik (RouterOS API, WinBox)', icon: Router },
       { text: 'Huawei (Switches, APs, LLDP)', icon: Server },
-      { text: 'Cisco (IOS/IOS-XE, NX-OS)', icon: Network },
+      { text: 'Cisco (Catalyst 9200L, IOS/IOS-XE)', icon: Network },
+      { text: 'LibreNMS & PRTG — telemetry at scale', icon: Cpu },
       { text: 'Linux (Debian, systemd, CLI)', icon: Terminal },
       { text: 'FTTH / GPON (OLT/ONU)', icon: Wifi },
       { text: 'Wireless & Mesh Networks', icon: Smartphone },

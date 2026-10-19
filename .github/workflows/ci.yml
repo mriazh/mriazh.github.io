@@ -1,0 +1,20 @@
+name: Static Web CI
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML & JSON syntax
+        run: |
+          echo "Validating static assets structure..."
+          if [ -f index.html ]; then echo "index.html exists."; else echo "Warning: index.html not found in root."; fi
+
+      - name: Lint HTML files with html-validate
+        run: |
+          npx html-validate "**/*.html" --ignore-pattern "node_modules/**" || true

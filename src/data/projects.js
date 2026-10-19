@@ -67,23 +67,23 @@ export const projectsData = [
   },
   {
     id: '9router-go',
-    title: '9router-go (Contributor)',
+    title: '9router-go (Active Core Contributor)',
     icon: GitMerge,
     metric: {
-      target: 'Go',
-      label: 'Upstream Core',
+      target: '26+',
+      label: 'Commits Merged',
       colorClass: 'project-metric--blue',
       isText: true,
     },
     category: 'ai-go',
-    tags: ['Go (Golang)', 'SQLite', 'Reverse Proxy', 'Security (SSRF)', 'Compaction'],
+    tags: ['Go (Golang)', 'Svelte', 'SQLite', 'Reverse Proxy', 'Distributed Tracing', 'Security (SSRF)'],
     details: {
       problem:
         'High-performance single-binary AI router needed production-grade SSRF protection for outbound dialing, database retention policies with automatic compaction to bound disk growth, and multi-account quota state isolation for fair usage.',
       solution:
-        'Contributed upstream PR #284: SSRF-safe dialer with private CIDR blocking, DNS rebinding protection, and allowlist bypass. PR #286: SQLite retention storage profiles with configurable TTL, automatic background compaction, and WAL checkpoint tuning. Multi-account quota isolation with atomic state transitions.',
+        'Active core contributor engineering SSRF-safe dialers with private CIDR blocking (PR #284), distributed tracing across request pipelines, SQLite retention storage profiles with automatic compaction and WAL checkpoint tuning (PR #286), multi-provider protocol translations for LLM backends, and multi-account quota state isolation.',
       result:
-        'Merged into 9router-go core. SSRF dialer blocks 100% of private-range bypass attempts. Compaction reduces DB size by 60-80% under load. Quota isolation prevents noisy-neighbor starvation. Used in production AI routing clusters.',
+        '26+ commits merged into upstream core and growing. SSRF dialer blocks private-range bypass attempts. Compaction reduces DB size 60-80% under load. Quota isolation prevents noisy-neighbor starvation.',
     },
     repoUrl: 'https://github.com/luqman-v1/9router-go/',
   },

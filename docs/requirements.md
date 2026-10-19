@@ -36,3 +36,38 @@ The user noticed an inconsistency in Curated Projects:
 - STRICTLY NO COMMIT OR PUSH ("jangan commit dulu, nanti gua cobain").
 - Zero-code policy outside `/docs` for orchestrator; dispatch worker for app code changes.
 - Verify with `npm run lint` and `npm run build`.
+
+---
+
+# Requirements: Creative Infrastructure Console (Iteration 8 - CV Ground Truth Alignment)
+
+## 1. Problem Statement
+User cross-checked the portfolio against his authoritative CV (`CV - Muhammad Riyadh Azhar.docx`). Findings:
+1. The `450+ Network Devices Audited` metric has no backing in the CV. The CV verifies: "Maintained operational telemetry across **190+ hosts** and **111+ enterprise switches** using LibreNMS and PRTG". The 190+ hosts number is the superset (switches included); 111+ is the switch subset.
+2. Skills drift: portfolio lists `Cisco (IOS/IOS-XE, NX-OS)` but CV specifies `Cisco Catalyst 9200L` (28-switch Bank BCA migration); CV skills missing from portfolio: `LibreNMS`, `PRTG`.
+3. The 9router-go card and GitHub profile README undersell actual contribution: **26 commits merged upstream** to `luqman-v1/9router-go` and ongoing. Current framing cites only PR #284 & #286, omitting `distributed tracing` and `multi-provider protocol translations` which the CV documents.
+
+## 2. Requirements Specification
+
+### 2.1 Metric Ground Truth (`MetricsProof.jsx`)
+- Replace `450+ Network Devices Audited` / `Aruba, Huawei, Cisco, MikroTik` with:
+  - `target: 190`
+  - `suffix: '+'`
+  - `label: 'Hosts Monitored'`
+  - `sublabel: 'LibreNMS & PRTG Telemetry'`
+- Keep: `328+ Pytest Suites Passing`, `150 Mbps RouterOS API Telemetry`, `18+ TelkomCare Sites Audited`.
+
+### 2.2 Skills Correction (`skills.js`)
+- Card 1 item: `Cisco (IOS/IOS-XE, NX-OS)` -> `Cisco (Catalyst 9200L, IOS/IOS-XE)`.
+- Card 1 add item: `LibreNMS & PRTG — telemetry at scale`.
+
+### 2.3 9router-go Card Elevation (`projects.js` + `InteractiveTerminal.jsx`)
+- Title: `9router-go (Active Core Contributor)`.
+- Metric: `26+` | `Commits Merged` (isText) | `project-metric--blue`.
+- Tags: `['Go (Golang)', 'Svelte', 'SQLite', 'Reverse Proxy', 'Distributed Tracing', 'Security (SSRF)']`.
+- Solution text: SSRF-safe dialers (PR #284), distributed tracing, SQLite retention & compaction (PR #286), multi-provider protocol translations, multi-account quota isolation.
+- Result text: `26+ commits merged into upstream core and growing...`.
+- Terminal `projects` output: mirror the same refreshed framing.
+
+### 2.4 GitHub Profile README (`mriazh/mriazh` repo, orchestrator via API)
+- Update the 9router-go row to Active Core Contributor framing with the 26+ commits count and full feature list.
