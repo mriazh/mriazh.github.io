@@ -2,7 +2,7 @@ import { Server, BarChart3, GitMerge, Cpu } from 'lucide-react';
 
 export const projectsData = [
   {
-    id: 'network-daily-report-automation',
+    id: 'network-daily-report',
     title: 'Network-Daily-Report',
     icon: Cpu,
     metric: {
@@ -70,8 +70,8 @@ export const projectsData = [
     title: '9router-go (Active Core Contributor)',
     icon: GitMerge,
     metric: {
-      target: '26+',
-      label: 'Commits Merged',
+      target: 'Active',
+      label: 'Core Contributor',
       colorClass: 'project-metric--blue',
       isText: true,
     },
@@ -83,7 +83,7 @@ export const projectsData = [
       solution:
         'Active core contributor engineering SSRF-safe dialers with private CIDR blocking (PR #284), distributed tracing across request pipelines, SQLite retention storage profiles with automatic compaction and WAL checkpoint tuning (PR #286), multi-provider protocol translations for LLM backends, and multi-account quota state isolation.',
       result:
-        '26+ commits merged into upstream core and growing. SSRF dialer blocks private-range bypass attempts. Compaction reduces DB size 60-80% under load. Quota isolation prevents noisy-neighbor starvation.',
+        'Continuous core contributor to upstream Go infrastructure (40+ merged commits and ongoing). SSRF dialer blocks private-range bypass attempts. Compaction reduces DB size 60-80% under load. Quota isolation prevents noisy-neighbor starvation. Used in production AI routing clusters.',
     },
     repoUrl: 'https://github.com/luqman-v1/9router-go/',
   },

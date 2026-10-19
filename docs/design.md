@@ -63,6 +63,23 @@ result: '26+ commits merged into upstream core and growing. SSRF dialer blocks p
 ### 1.4 `src/components/InteractiveTerminal.jsx` — `projects` Command
 Mirror the refreshed 9router-go block (26+ commits, distributed tracing, multi-provider translations).
 
+---
+
+# Technical Design: Evergreen 9router-go & Public Network-Daily-Report (Iteration 9)
+
+## 1. Project URL and Title Migration
+- `projectsData[0]`:
+  - `id`: `network-daily-report`
+  - `title`: `Network-Daily-Report`
+  - `repoUrl`: `https://github.com/mriazh/Network-Daily-Report`
+
+## 2. Evergreen 9router-go Architecture
+- Instead of static numbers that rot as commits land:
+  - Metric badge: `Active` (target) / `Core Contributor` (label)
+  - Copy anchors to `40+ merged commits and ongoing`
+  - Eliminates maintenance toil across commit bursts.
+
+
 ## 2. GitHub Profile README (`mriazh/mriazh`)
 Orchestrator updates the row directly via the GitHub API (repo `mriazh/mriazh`, README.md):
 ```text

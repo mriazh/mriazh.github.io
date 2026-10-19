@@ -71,3 +71,34 @@ User cross-checked the portfolio against his authoritative CV (`CV - Muhammad Ri
 
 ### 2.4 GitHub Profile README (`mriazh/mriazh` repo, orchestrator via API)
 - Update the 9router-go row to Active Core Contributor framing with the 26+ commits count and full feature list.
+
+---
+
+# Requirements: Evergreen 9router-go & Public Network-Daily-Report (Iteration 9)
+
+## 1. Problem Statement
+1. Private repo rename: `Network-Daily-Report-Automation` (private) -> `Network-Daily-Report` (public: `https://github.com/mriazh/Network-Daily-Report`). Portfolio URL and title must point to the public repo.
+2. Fast-moving open-source metrics: user's merged commits on `luqman-v1/9router-go` jumped from 26 to 47 commits in days, and continues growing. Static numbers like `26+` rot immediately. Metric must be evergreen (`Active | Core Contributor`), and copy must frame ongoing contributions (`40+ merged commits and ongoing`) to remain permanently accurate.
+
+## 2. Requirements Specification
+
+### 2.1 Public Repo Migration
+- `src/data/projects.js`:
+  - `id: 'network-daily-report'`
+  - `title: 'Network-Daily-Report'`
+  - `repoUrl: 'https://github.com/mriazh/Network-Daily-Report'`
+- `src/components/InteractiveTerminal.jsx`:
+  - Update `projects` command title to `[01 // ORCHESTRATION] Network-Daily-Report`.
+
+### 2.2 Evergreen 9router-go Framing
+- `src/data/projects.js`:
+  - `metric: { target: 'Active', label: 'Core Contributor', colorClass: 'project-metric--blue', isText: true }`
+  - `details.result`: `'Continuous core contributor to upstream Go infrastructure (40+ merged commits and ongoing). SSRF dialer blocks private-range bypass attempts. Compaction reduces DB size 60-80% under load. Quota isolation prevents noisy-neighbor starvation.'`
+- `src/components/InteractiveTerminal.jsx`:
+  - `[04 // OPEN SOURCE] 9router-go (Active Core Contributor)`
+  - Update description to note continuous upstream contributions (40+ commits and ongoing).
+
+### 2.3 GitHub Profile README (`mriazh/mriazh`)
+- Update both rows:
+  - Network-Daily-Report link & title -> `https://github.com/mriazh/Network-Daily-Report`
+  - 9router-go description -> `40+ commits merged upstream and ongoing`

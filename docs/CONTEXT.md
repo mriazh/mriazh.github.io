@@ -33,5 +33,27 @@
 - `skills.js`: `Cisco (IOS/IOS-XE, NX-OS)` -> `Cisco (Catalyst 9200L, IOS/IOS-XE)`; added `LibreNMS & PRTG — telemetry at scale`.
 - `projects.js` + `InteractiveTerminal.jsx`: 9router-go elevated to `Active Core Contributor`, metric `26+ Commits Merged` (26 live commits measured via GitHub API on luqman-v1/9router-go by mriazh), copy includes distributed tracing + multi-provider protocol translations.
 - `mriazh/mriazh` profile README updated & committed via API: 9router-go row now carries 26+ commits merged upstream and ongoing + distributed tracing (commit f5567dc on branch master).
-- NOTE: two untracked files not created by this session appeared: `.github/workflows/ci.yml` and `.pre-commit-config.yaml` (concurrent edit from user side). Left untouched.
-- Portfolio repo: zero commits, zero pushes. Local preview only.
+- Downloadable CV updated to latest PDF (114KB).
+- Committed as `7578247` and pushed to `origin/master`.
+
+# Session Context: Evergreen 9router-go & Public Network-Daily-Report (Iteration 9)
+
+## Current State
+- User reported repo rename: `Network-Daily-Report-Automation` (private) -> `Network-Daily-Report` (public). Must point portfolio card and terminal output to `https://github.com/mriazh/Network-Daily-Report`.
+- 9router-go commits measured live: jumped from 26 to **47 commits**! Static counter rots too fast.
+- Solution: change card metric to `Active | Core Contributor` (isText: true) and copy to `40+ merged commits and ongoing` — stays accurate indefinitely.
+- STRICTLY NO commit/push of portfolio without user confirmation. Worker changes code; orchestrator syncs profile README via GitHub API.
+
+## Verification Evidence (Iteration 9)
+- ESLint clean; Vite build clean (226.99 kB JS / 26.31 kB CSS, 1.28s).
+- `src/data/projects.js`:
+  - NDR project: `id` updated to `network-daily-report`, points to `https://github.com/mriazh/Network-Daily-Report`.
+  - 9router-go: metric converted from volatile static counter `26+` to evergreen `Active` / `Core Contributor` (`isText: true`).
+  - 9router-go result copy: anchored to `Continuous core contributor to upstream Go infrastructure (40+ merged commits and ongoing)`.
+- `src/components/InteractiveTerminal.jsx`:
+  - `projects` output updated: `[01 // ORCHESTRATION] Network-Daily-Report`.
+  - 9router-go block updated to "Continuous upstream core contributor (40+ merged commits and ongoing)".
+- GitHub Profile README (`mriazh/mriazh`):
+  - Updated live via GitHub API (commit `b96f09d` on branch `master`).
+  - Row reflects: `https://github.com/mriazh/Network-Daily-Report` + `40+ commits merged upstream and ongoing`.
+- Portfolio repo: ZERO commit, ZERO push. Uncommitted local changes ready for user preview.
