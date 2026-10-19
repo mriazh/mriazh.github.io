@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Planning & Orchestrator Docs
+docs/
+.codegraph/
+*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
