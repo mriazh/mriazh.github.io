@@ -31,7 +31,7 @@ const COMMANDS = {
   projects: {
     description: 'Flagship Projects',
     output: [
-      '  [01 // ORCHESTRATION] Network-Daily-Report-Automation',
+      '  [01 // ORCHESTRATION] Network-Daily-Report',
       '       Master 24/7 infra orchestrator on Debian. Aggregates Telkomsel M2M,',
       '       TelkomCare MRTG, Aruba AirWave, Huawei APs, Orbit modems →',
       '       daily Excel + WhatsApp via GOWA. Metric: 24/7 | Systemd Host',

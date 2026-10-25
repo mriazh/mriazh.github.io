@@ -3,7 +3,7 @@ import { Server, BarChart3, GitMerge, Cpu } from 'lucide-react';
 export const projectsData = [
   {
     id: 'network-daily-report-automation',
-    title: 'Network-Daily-Report-Automation',
+    title: 'Network-Daily-Report',
     icon: Cpu,
     metric: {
       target: '24/7',
@@ -20,7 +20,7 @@ export const projectsData = [
       result:
         'Delivers automated daily Excel workbooks (multi-sheet: summary, circuits, switches, APs, modems) and technical WhatsApp broadcasts at 06:00 WIB daily. Zero manual intervention since deployment. Runs 24/7 on Debian host via systemd.',
     },
-    repoUrl: 'https://github.com/mriazh/Network-Daily-Report-Automation',
+    repoUrl: 'https://github.com/mriazh/Network-Daily-Report',
   },
   {
     id: 'mrtg-cmp',
